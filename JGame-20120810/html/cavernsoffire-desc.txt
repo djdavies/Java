@@ -1,0 +1,11 @@
+A "lunar lander" on steroids.
+<br>
+Move around using the cursor keys, use Z to shoot.
+<br>
+Land on all platforms to finish each level.  You have to wait on each platform
+until it turns green.
+If the level contains no or
+little lava, you can also finish the level by eliminating all enemies.
+<br>
+The game has 16 skill levels.
+

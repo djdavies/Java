@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.2
+MIDlet-Vendor: JGame
+MIDlet-Version: 1.2
+MIDlet-1: Munchies, , examples.munchies.Munchies
+MicroEdition-Configuration: CLDC-1.1
+Created-By: 1.6.0_18-b18 (Sun Microsystems Inc.)
+MIDlet-Jar-URL: MunchiesMidlet.jar
+MIDlet-Name: Munchies
+MicroEdition-Profile: MIDP-2.0
+MIDlet-Jar-Size: 69730

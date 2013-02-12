@@ -1,0 +1,125 @@
+starbg			-	0	01-star-best-240.gif	-
+
+hills_map	Moonscape12s-crop-black-tr80.gif	0	0	16	16	0	0
+hq_map		moonBase1-crop-resize-tr.gif	0	0	16	16	0	0
+human_map	running-man-all-sm2-tr-brite.gif	0	0	16	22	0	0
+
+human_r1	-	0	human_map	0	-
+human_r2	-	0	human_map	1	-
+human_r3	-	0	human_map	2	-
+human_r4	-	0	human_map	3	-
+human_r5	-	0	human_map	4	-
+human_r6	-	0	human_map	5	-
+human_r7	-	0	human_map	6	-
+human_r8	-	0	human_map	7	-
+human_r9	-	0	human_map	8	-
+human_r10	-	0	human_map	9	-
+human_r11	-	0	human_map	10	-
+human_r12	-	0	human_map	11	-
+human_r13	-	0	human_map	12	-
+human_r14	-	0	human_map	13	-
+
+human_r		human_r1;human_r2;human_r3;human_r4;human_r5;human_r6;human_r7;human_r8;human_r9;human_r10;human_r11;human_r12;human_r13;human_r14		0.3
+
+human_l1	-	0	human_map	0	x
+human_l2	-	0	human_map	1	x
+human_l3	-	0	human_map	2	x
+human_l4	-	0	human_map	3	x
+human_l5	-	0	human_map	4	x
+human_l6	-	0	human_map	5	x
+human_l7	-	0	human_map	6	x
+human_l8	-	0	human_map	7	x
+human_l9	-	0	human_map	8	x
+human_l10	-	0	human_map	9	x
+human_l11	-	0	human_map	10	x
+human_l12	-	0	human_map	11	x
+human_l13	-	0	human_map	12	x
+human_l14	-	0	human_map	13	x
+
+human_l		human_l1;human_l2;human_l3;human_l4;human_l5;human_l6;human_l7;human_l8;human_l9;human_l10;human_l11;human_l12;human_l13;human_l14		0.3
+
+shipr			p	0	ship32x16.gif	-	4	4	22	10
+shipl			p	0	ship32x16.gif	x	4	4	22	10
+
+
+enemy_map		guardianenemies.gif		0	0	20	20	0	0
+pod_map			podblue14x14.gif		0	0	14	14	0	0
+
+ufo1			p	0	enemy_map	0		-	2	0	12	16
+ufo2			p	0	enemy_map	1		-	2	1	12	14
+ufo3			p	0	enemy_map	2		-	2	3	12	10
+ufo4			p	0	enemy_map	3		-	2	3	12	10
+
+tractor			-	0	tractorbeam.gif		-
+
+ufo		ufo1;ufo2;ufo3;ufo4		0.3
+
+bomber1		-	0	enemy_map	4	-
+bomber2		-	0	enemy_map	5	-
+bomber3		-	0	enemy_map	6	-
+bomber4		-	0	enemy_map	7	-
+
+bomber	bomber1;bomber2;bomber3;bomber4		0.5
+
+mutant1		-	0	enemy_map	8	-
+mutant2		-	0	enemy_map	9	-
+
+mutant		mutant1;mutant2		0.5
+
+splitter1	-	0	enemy_map	10	-
+splitter2	-	0	enemy_map	11	-
+splitter3	-	0	enemy_map	12	-
+splitter4	-	0	enemy_map	13	-
+splitter5	-	0	enemy_map	14	-
+splitter6	-	0	enemy_map	15	-
+
+splitter	splitter1;splitter2;splitter3;splitter4;splitter5;splitter6	0.4
+
+mine_map	decabeam20.gif		0	0	20	20	0	0
+
+mine1	-	0	mine_map	0	-
+mine2	-	0	mine_map	1	-
+mine3	-	0	mine_map	2	-
+mine4	-	0	mine_map	3	-
+mine5	-	0	mine_map	4	-
+mine6	-	0	mine_map	5	-
+mine7	-	0	mine_map	6	-
+mine8	-	0	mine_map	7	-
+
+miner1	-	0	mine_map	0	x
+miner2	-	0	mine_map	1	x
+miner3	-	0	mine_map	2	x
+miner4	-	0	mine_map	3	x
+miner5	-	0	mine_map	4	x
+miner6	-	0	mine_map	5	x
+miner7	-	0	mine_map	6	x
+miner8	-	0	mine_map	7	x
+
+mine	mine1;mine2;mine3;mine4;mine5;mine6;mine7;mine8		0.3
+miner	miner1;miner2;miner3;miner4;miner5;miner6;miner7;miner8		0.3
+
+bullet_map		ballbullet-tr.gif		0	0	10	10	0	0
+bullet1			p	0	bullet_map	0		-
+bullet2			p	0	bullet_map	1		-
+bullet		bullet1;bullet2		0.5
+
+globe1			-	0	bullet_map	2	-
+globe2			-	0	bullet_map	3	-
+
+globe	globe1;globe2		0.3
+
+
+baiter_map		ufo04-all-sm.gif	0	0	38	14	0	0
+
+baiter1		-	0	baiter_map	0	-
+baiter2		-	0	baiter_map	1	-
+baiter3		-	0	baiter_map	2	-
+baiter4		-	0	baiter_map	3	-
+baiter5		-	0	baiter_map	4	-
+baiter6		-	0	baiter_map	5	-
+baiter7		-	0	baiter_map	6	-
+baiter8		-	0	baiter_map	7	-
+
+baiter	baiter1;baiter2;baiter3;baiter4;baiter5;baiter6;baiter7;baiter8	0.4
+
+

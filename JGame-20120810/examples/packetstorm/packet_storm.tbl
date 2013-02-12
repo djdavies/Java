@@ -1,0 +1,29 @@
+blocks16_map	blocks16x16.gif			0	0	16	16	0	0
+
+black16		k	0	blocks16_map	0	-	0	0	16	16
+white16		w	0	blocks16_map	1	-	0	0	16	16
+red16		r	4	blocks16_map	2	-	0	0	16	16
+magenta16	m	0	blocks16_map	3	-	0	0	16	16
+blue16		b	0	blocks16_map	4	-	0	0	16	16
+cyan16		c	0	blocks16_map	13	-	0	0	16	16
+green16		g	0	blocks16_map	14	-	0	0	16	16
+yellow16	y	0	blocks16_map	15	-	0	0	16	16
+orange16	or	0	blocks16_map	8	-	0	0	16	16
+grey16		gr	0	blocks16_map	9	-	0	0	16	16
+ltred16		lr	0	blocks16_map	10	-	0	0	16	16
+ltmagenta16	lm	0	blocks16_map	11	-	0	0	16	16
+ltblue16	lb	1	blocks16_map	12	-	0	0	16	16
+dkcyan16	dc	0	blocks16_map	5	-	0	0	16	16
+dkgreen16	dg	0	blocks16_map	6	-	0	0	16	16
+brown16		br	0	blocks16_map	7	-	0	0	16	16
+ 
+packet_wait		red16;yellow16		0.05
+packet_move		red16;orange16;yellow16		0.2	true
+packet_die		red16;white16		0.5
+
+newpacket	19463_haribo3.wav
+packetdone	32946__HardPCM__Chip019.wav
+release		Arcade_S-wwwbeat-1890-amp.wav
+toggle1		stapler-on.wav
+toggle2		stapler-off.wav
+die			33113__HardPCM__Chip069.wav

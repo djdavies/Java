@@ -1,0 +1,106 @@
+splash_image	-	0	data/webwars-logo-2.png	-
+
+extralife		data/warble4-22k.wav
+screech1		data/hawk1-22k.wav
+screech2		data/hawk2-22k.wav
+explo1		data/rumble2.wav
+explo2		data/rumble2b.wav
+explo3		data/rumble2c.wav
+bonus1		data/sweep1.wav
+bonus2		data/sweep1b.wav
+bonus3		data/sweep1c.wav
+ready			data/jeffminter1c-22k.wav
+death			data/explo2-22k.wav
+excellent		data/warble4-22k.wav
+zap				data/thud2.wav
+eject			data/Pop-J_Fairba-1725.mp3.wav
+bossexplo	data/Boom-Public_d-160_hifi-low-flange.mp3.wav
+
+speakericon	-	0	data/Speaker-sm.png	-
+officon	-	0	data/forbidden-shaded2-80.png	-
+leftarrow	<	0	data/rightarrow-64.png	x
+rightarrow	>	0	data/rightarrow-64.png	-
+logo	-	0	data/tomato-icon-96-2.png	-
+
+pointer	-	0	data/pointerbw96.png	-
+
+pointersm	-	0	data/pointer32.png	-
+
+bullet	-	0	data/crosshair20.png	r
+
+crosshair	-	0	data/crosshairs-new.png	r
+
+rss_green	-	0	data/rss_icon32-green2.png	-
+
+play_blue	-	0	data/player-play-64.png	-
+play_red	-	0	data/stopbutton-64-cyan.png	-
+
+rss_blue	-	0	data/rss-blue-trans32.png	-
+
+particle1	-	0	data/particle-yellow.png	-
+particle2	-	0	data/particle-red.png	-
+particle3	-	0	data/particle-magenta.png	-
+particle4	-	0	data/particle-blue.png	-
+particle5	-	0	data/particle-cyan.png	-
+particle6	-	0	data/particle-green.png	-
+
+dropparticle	-	0	data/whitebracket.png	x
+particlewhite	-	0	data/particle-white2.png	-
+particlewhitehard	-	0	data/particle-white-hard.png	-
+
+smokeparticle	-	0	data/smokeparticle1-16.png	-
+
+bonus1	-	0	data/yellowstar-webdesignhot-32.png	-
+bonus2	-	0	data/fourleaf-orange-32.png	-
+bonus3	-	0	data/sun-32.png	-
+bonus4	-	0	data/at_icon-tr-32.png	-
+bonus5	-	0	data/musicnote-32.png	-
+bonus6	-	0	data/Web_2_0_RSS_Icon-tr-32.png	-
+
+birdr	-	0	data/bluebird64.png	-
+birdl	-	0	data/bluebird64.png	y
+
+warning1	-	0	data/error_icon-red-65-homemade.png	-
+warning2	-	0	data/warning-shield-65.png	-
+
+boss1	-	0	data/aqua-button-md-boss-cyan-256.png	-
+bossbut1	-	0	data/aqua-button-md-sm1.png	-
+bossbut2	-	0	data/aqua-button-md-sm2.png	-
+bossbut3	-	0	data/aqua-button-md-sm3.png	-
+
+boss2	-	0	data/starboss-192-2.png	-
+bossstar1	-	0	data/star-40-red.png	-
+bossstar2	-	0	data/star-40-magenta.png	-
+bossstar3	-	0	data/star-40-blue.png	-
+
+email	-	0	data/email-icon-53x48-tr2.png	-
+spam	-	0	data/spam-tr-35x32-homemade.png	-
+pear	-	0	data/tomato-chew-color2-52-2.png	-
+
+cross	-	0	data/clover-64.png	-
+jay1	-	0	data/jay-48.png	-
+jay2	-	0	data/jay-48.png	x
+
+
+pow1	-	0	data/pow-1.png	-
+pow2	-	0	data/pow-2.png	-
+pow3	-	0	data/pow-3.png	-
+pow4	-	0	data/pow-4.png	-
+pow5	-	0	data/pow-5.png	-
+pow6	-	0	data/pow-6.png	-
+
+powerbar	-	0	data/powerbar16.png	-
+
+bg1	-	0	data/dynamic-lines-webdesignhot.jpg	-
+bg2	-	0	data/elemental_morningstar_animesh_jha-dark.jpg	-
+bg3	-	0	data/grainyretro-2-webtreats-640-dark.jpg	-
+bg4	-	0	data/phoenixrising_animesh_jha-640-dark.jpg	-
+bg5	-	0	data/webtreats-grungy-bokeh-640-dark.jpg	-
+bg6	-	0	data/4688-webtreats-640.jpg	-
+bg0	-	0	data/Simple_Star_Field_by_DarkMaiden_Stock-640-dark.jpg	-
+
+gamelogo	-	0	data/webwars-logo-2.png	-
+
+
+
+

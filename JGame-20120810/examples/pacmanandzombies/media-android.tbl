@@ -1,0 +1,165 @@
+splash_image	a	1	paczomb-logo1.png	-
+
+spawn1	groundmove1-11k.wav
+spawn2	groundmove2-11k.wav
+moan1	zombiemoan1-11k.wav
+moan2	zombiemoan2-11k.wav
+moan3	zombiemoan3-11k.wav
+eatzombie	pacman_eatghost-11k.wav
+eatpill		pacman_eatfruit-11k.wav
+
+zombieeating	zombieeating2-11k.wav
+
+newpill		pacman_eatfruit-revslow-11k.wav
+pacmaneat0	pacmaneat-11k.wav
+pacmaneat1	pacmaneat2-11k.wav
+
+
+tiles_map		pacmantiles.png		0	0	32	32	0	0
+
+
+bg0		-	0	brick-wall-640x480.jpg		-
+bg1		-	0	textures-121-l-640x480.jpg	-
+bg2		-	0	sixrevisions-640x480.jpg	-
+bg3		-	9	bluepaint640x480.jpg	-
+
+pacman_r0	-	0	pacmansm-0.png	-		10	10	12	12
+pacman_r1	-	0	pacmansm-1.png	-		10	10	12	12
+pacman_r2	-	0	pacmansm-2.png	-		10	10	12	12
+pacman_r	pacman_r0;pacman_r1;pacman_r2	0.5		true
+
+pacman_		pacman_r0;pacman_r1;pacman_r2	0.5		true
+
+pacman_l0	-	0	pacmansm-0.png	x		10	10	12	12
+pacman_l1	-	0	pacmansm-1.png	x		10	10	12	12
+pacman_l2	-	0	pacmansm-2.png	x		10	10	12	12
+pacman_l	pacman_l0;pacman_l1;pacman_l2	0.5		true
+
+pacman_u0	-	0	pacmansm-0.png	l		10	10	12	12
+pacman_u1	-	0	pacmansm-1.png	l		10	10	12	12
+pacman_u2	-	0	pacmansm-2.png	l		10	10	12	12
+pacman_u	pacman_u0;pacman_u1;pacman_u2	0.5	true
+
+pacman_d0	-	0	pacmansm-0.png	ry		10	10	12	12
+pacman_d1	-	0	pacmansm-1.png	ry		10	10	12	12
+pacman_d2	-	0	pacmansm-2.png	ry		10	10	12	12
+pacman_d	pacman_d0;pacman_d1;pacman_d2	0.5	true
+
+
+
+pacman_p_r0	-	0	pacmansmred-0.png	-		10	10	12	12
+pacman_p_r1	-	0	pacmansmred-1.png	-		10	10	12	12
+pacman_p_r2	-	0	pacmansmred-2.png	-		10	10	12	12
+pacman_p_r	pacman_p_r0;pacman_p_r1;pacman_p_r2	0.5		true
+
+pacman_p_		pacman_p_r0;pacman_p_r1;pacman_p_r2	0.5		true
+
+pacman_p_l0	-	0	pacmansmred-0.png	x		10	10	12	12
+pacman_p_l1	-	0	pacmansmred-1.png	x		10	10	12	12
+pacman_p_l2	-	0	pacmansmred-2.png	x		10	10	12	12
+pacman_p_l	pacman_p_l0;pacman_p_l1;pacman_p_l2	0.5		true
+
+pacman_p_u0	-	0	pacmansmred-0.png	l		10	10	12	12
+pacman_p_u1	-	0	pacmansmred-1.png	l		10	10	12	12
+pacman_p_u2	-	0	pacmansmred-2.png	l		10	10	12	12
+pacman_p_u	pacman_p_u0;pacman_p_u1;pacman_p_u2	0.5	true
+
+pacman_p_d0	-	0	pacmansmred-0.png	ry		10	10	12	12
+pacman_p_d1	-	0	pacmansmred-1.png	ry		10	10	12	12
+pacman_p_d2	-	0	pacmansmred-2.png	ry		10	10	12	12
+pacman_p_d	pacman_p_d0;pacman_p_d1;pacman_p_d2	0.5	true
+
+
+
+zombieap_map	zombeh2_disappear-fudged.png	8	8	32	32	8	8
+
+zombieap0	-	0	zombieap_map	0	-
+zombieap1	-	0	zombieap_map	1	-
+zombieap2	-	0	zombieap_map	2	-
+zombieap3	-	0	zombieap_map	3	-
+zombieap4	-	0	zombieap_map	4	-
+zombieap5	-	0	zombieap_map	5	-
+
+zombie_appear	zombieap5;zombieap4;zombieap3;zombieap2;zombieap1;zombieap0	0.25
+
+zombie_map		zombeh2_walk-fudged.png		8	8	32	32	8	8
+
+
+zombie_r0	-	0	zombie_map	0	-
+zombie_r1	-	0	zombie_map	1	-
+zombie_r2	-	0	zombie_map	2	-
+zombie_r3	-	0	zombie_map	3	-
+zombie_r4	-	0	zombie_map	4	-
+zombie_r5	-	0	zombie_map	5	-
+zombie_r6	-	0	zombie_map	6	-
+zombie_r7	-	0	zombie_map	7	-
+
+zombie_r	zombie_r0;zombie_r1;zombie_r2;zombie_r3;zombie_r4;zombie_r5;zombie_r6;zombie_r7		0.25
+
+zombie_ur	zombie_r0;zombie_r1;zombie_r2;zombie_r3;zombie_r4;zombie_r5;zombie_r6;zombie_r7		0.25
+zombie_dr	zombie_r0;zombie_r1;zombie_r2;zombie_r3;zombie_r4;zombie_r5;zombie_r6;zombie_r7		0.25
+
+
+zombie_	zombie_l0;zombie_l1;zombie_l2;zombie_l3;zombie_l4;zombie_l5;zombie_l6;zombie_l7		0.25
+
+zombie_l0	-	0	zombie_map	0	x
+zombie_l1	-	0	zombie_map	1	x
+zombie_l2	-	0	zombie_map	2	x
+zombie_l3	-	0	zombie_map	3	x
+zombie_l4	-	0	zombie_map	4	x
+zombie_l5	-	0	zombie_map	5	x
+zombie_l6	-	0	zombie_map	6	x
+zombie_l7	-	0	zombie_map	7	x
+
+zombie_l	zombie_l0;zombie_l1;zombie_l2;zombie_l3;zombie_l4;zombie_l5;zombie_l6;zombie_l7		0.25
+
+zombie_ul	zombie_l0;zombie_l1;zombie_l2;zombie_l3;zombie_l4;zombie_l5;zombie_l6;zombie_l7		0.25
+zombie_dl	zombie_l0;zombie_l1;zombie_l2;zombie_l3;zombie_l4;zombie_l5;zombie_l6;zombie_l7		0.25
+
+
+zombie_u0	-	0	zombie_map	0	l
+zombie_u1	-	0	zombie_map	1	l
+zombie_u2	-	0	zombie_map	2	l
+zombie_u3	-	0	zombie_map	3	l
+zombie_u4	-	0	zombie_map	4	l
+zombie_u5	-	0	zombie_map	5	l
+zombie_u6	-	0	zombie_map	6	l
+zombie_u7	-	0	zombie_map	7	l
+
+zombie_u	zombie_u0;zombie_u1;zombie_u2;zombie_u3;zombie_u4;zombie_u5;zombie_u6;zombie_u7		0.25
+
+
+zombie_d0	-	0	zombie_map	0	ry
+zombie_d1	-	0	zombie_map	1	ry
+zombie_d2	-	0	zombie_map	2	ry
+zombie_d3	-	0	zombie_map	3	ry
+zombie_d4	-	0	zombie_map	4	ry
+zombie_d5	-	0	zombie_map	5	ry
+zombie_d6	-	0	zombie_map	6	ry
+zombie_d7	-	0	zombie_map	7	ry
+
+zombie_d	zombie_d0;zombie_d1;zombie_d2;zombie_d3;zombie_d4;zombie_d5;zombie_d6;zombie_d7		0.25
+
+
+wall0		#0	1	tiles_map	0	-
+wall1		#1	1	tiles_map	0	-
+wall2		#2	1	tiles_map	0	-
+wall3		#3	1	tiles_map	0	-
+wall4		#4	1	tiles_map	0	-
+
+space		.	0	tiles_map	1	-
+pill		o	2	tiles_map	2	-
+
+blood1		b1	0	tiles_map	5	-
+blood2		b2	0	tiles_map	6	-
+blood3		b3	0	tiles_map	7	-
+blood21		c1	0	tiles_map	5	l
+blood22		c2	0	tiles_map	6	l
+blood23		c3	0	tiles_map	7	l
+
+powerpill1	-	0	tiles_map	3	-
+powerpill2	-	0	tiles_map	4	-
+
+powerpill	powerpill1;powerpill2	0.07
+
+

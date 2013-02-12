@@ -1,0 +1,41 @@
+splash_image	a	1	insecticide-splash.gif	-	0	0	16	16
+
+worm_map		nhsnake32.gif				0	0	32	32	0	0
+
+ship		s	1	ship.gif			-	0	0	32	32
+bullet		s	1	bullet.gif			-	16	0	1	32
+spider		s	1	spider.gif			-	0	0	32	32
+scorpion_l	s	1	scorpion_left.gif	-	0	0	32	32
+scorpion_r	s	1	scorpion_left.gif	x	0	0	32	32
+beetle_l1	s	1	beetle_left1.gif	-	0	0	16	16
+beetle_l2	s	1	beetle_left2.gif	-	0	0	16	16
+beetle_r1	s	1	beetle_left1.gif	x	0	0	16	16
+beetle_r2	s	1	beetle_left2.gif	x	0	0	16	16
+worm_l		s	1	worm_map	1			x	0	0	32	32
+worm_r		s	1	worm_map	1			-	0	0	32	32
+
+beetle_l	beetle_l1;beetle_l2		0.3
+beetle_r	beetle_r1;beetle_r2		0.3
+
+empty_w		 	0	empty-white.gif		-
+empty_0		 y	0	empty-yellow.gif	-
+empty_1		 g	0	empty-green.gif		-
+empty_2		 b	0	empty-brown.gif		-
+
+mushroom_gr	mg	1	mushroom-green.gif	-
+mushroom	m	1	mushroom.gif	-
+mushroom2	m2	2	mushroom2.gif	-
+mushroom3	m3	3	mushroom3.gif	-
+mushroom4	m4	4	mushroom4.gif	-
+mushroom5	m5	5	mushroom5.gif	-
+mushroom6	m6	6	mushroom6.gif	-
+mushroom7	m7	7	mushroom7.gif	-
+explo1		s	0	explo1.gif		-
+explo2		s	0	explo2.gif		-
+explo3		s	0	explo3.gif		-
+explo4		s	0	explo4.gif		-
+explo5		s	0	explo5.gif		-
+explo6		s	0	explo6.gif		-
+explo7		s	0	explo7.gif		-
+
+explo	explo1;explo2;explo3;explo4;explo5;explo6;explo7	0.5

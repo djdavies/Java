@@ -1,0 +1,144 @@
+splash_image	a	1	pubman-splash.gif	-	0	0	16	16
+
+player_map			rollingball-tr.gif			0	0	16	16	0	0
+enemy_map			walkingbeer-tr.gif			0	0	16	16	0	0
+wall_map			matrixwall.gif				0	0	16	16	0	0
+enemy_blue_map		walkingbeer-blue.gif		0	0	16	16	0	0
+enemy_black_map		walkingbeer-black.gif		0	0	16	16	0	0
+enemy_white_map		walkingbeer-white.gif		0	0	16	16	0	0
+goodie_map			goodie-circle-tr.gif		0	0	16	16	0	0
+pills_map			pacpills.gif				0	0	16	16	0	0
+font_map			font234-red-tr.gif			0	0	16	16	0	0
+
+wall0		#0	1	wall_map	0				-
+wall1		#1	1	wall_map	1				-
+wall2		#2	1	wall_map	2				-
+wall3		#3	1	wall_map	3				-
+wall4		#4	1	wall_map	4				-
+
+space		.	0	null						-
+ghostpath	g	16	null						-
+doorpath	d	32	null						-
+freepath	f	64	null						-
+
+pill		o	2	pills_map		1	-	5	5	6	6
+powerpill	*	0	pills_map		0	-	5	5	6	6
+ghostdoor	=	8	revolvingdoor.gif	r
+door_l		<	4	revolvingdoor.gif	r
+door_r		>	4	revolvingdoor.gif	r
+door_u		^	4	revolvingdoor.gif	-
+door_d		v	4	revolvingdoor.gif	-
+
+player_d0	p	0	player_map	0	-	3	3	10	10
+player_d1	p	0	player_map	1	-	3	3	10	10
+player_d2	p	0	player_map	2	-	3	3	10	10
+player_d3	p	0	player_map	3	-	3	3	10	10
+player_d4	p	0	player_map	4	-	3	3	10	10
+player_d5	p	0	player_map	5	-	3	3	10	10
+player_d6	p	0	player_map	6	-	3	3	10	10
+player_d7	p	0	player_map	7	-	3	3	10	10
+
+player_u0	p	0	player_map	0	y	3	3	10	10
+player_u1	p	0	player_map	1	y	3	3	10	10
+player_u2	p	0	player_map	2	y	3	3	10	10
+player_u3	p	0	player_map	3	y	3	3	10	10
+player_u4	p	0	player_map	4	y	3	3	10	10
+player_u5	p	0	player_map	5	y	3	3	10	10
+player_u6	p	0	player_map	6	y	3	3	10	10
+player_u7	p	0	player_map	7	y	3	3	10	10
+
+player_l0	p	0	player_map	0	r	3	3	10	10
+player_l1	p	0	player_map	1	r	3	3	10	10
+player_l2	p	0	player_map	2	r	3	3	10	10
+player_l3	p	0	player_map	3	r	3	3	10	10
+player_l4	p	0	player_map	4	r	3	3	10	10
+player_l5	p	0	player_map	5	r	3	3	10	10
+player_l6	p	0	player_map	6	r	3	3	10	10
+player_l7	p	0	player_map	7	r	3	3	10	10
+
+player_r0	p	0	player_map	0	l	3	3	10	10
+player_r1	p	0	player_map	1	l	3	3	10	10
+player_r2	p	0	player_map	2	l	3	3	10	10
+player_r3	p	0	player_map	3	l	3	3	10	10
+player_r4	p	0	player_map	4	l	3	3	10	10
+player_r5	p	0	player_map	5	l	3	3	10	10
+player_r6	p	0	player_map	6	l	3	3	10	10
+player_r7	p	0	player_map	7	l	3	3	10	10
+
+player_		player_d0	0.0
+player_d	player_d0;player_d1;player_d2;player_d3;player_d4;player_d5;player_d6;player_d7	1
+player_u	player_u0;player_u1;player_u2;player_u3;player_u4;player_u5;player_u6;player_u7	1
+player_l	player_l0;player_l1;player_l2;player_l3;player_l4;player_l5;player_l6;player_l7	1
+player_r	player_r0;player_r1;player_r2;player_r3;player_r4;player_r5;player_r6;player_r7	1
+
+enemy_0		p	0	enemy_map	0	-	0	0	16	16
+enemy_1		p	0	enemy_map	1	-	0	0	16	16
+enemy_2		p	0	enemy_map	2	-	0	0	16	16
+enemy_3		p	0	enemy_map	3	-	0	0	16	16
+enemy_4		p	0	enemy_map	4	-	0	0	16	16
+enemy_5		p	0	enemy_map	5	-	0	0	16	16
+enemy_6		p	0	enemy_map	6	-	0	0	16	16
+
+enemy_		enemy_0;enemy_1;enemy_2;enemy_3;enemy_4;enemy_5;enemy_6	0.5
+enemy_r		enemy_0;enemy_1;enemy_2		0.3		true
+enemy_l		enemy_3;enemy_4;enemy_5		0.3		true
+enemy_u		enemy_2;enemy_3				0.2
+enemy_d		enemy_5;enemy_6;enemy_0		0.3		true
+
+enemy_b_0		p	0	enemy_blue_map	0	-	0	0	16	16
+enemy_b_1		p	0	enemy_blue_map	1	-	0	0	16	16
+enemy_b_2		p	0	enemy_blue_map	2	-	0	0	16	16
+enemy_b_3		p	0	enemy_blue_map	3	-	0	0	16	16
+enemy_b_4		p	0	enemy_blue_map	4	-	0	0	16	16
+enemy_b_5		p	0	enemy_blue_map	5	-	0	0	16	16
+enemy_b_6		p	0	enemy_blue_map	6	-	0	0	16	16
+
+enemy_b_		enemy_b_0;enemy_b_1;enemy_b_2;enemy_b_3;enemy_b_4;enemy_b_5;enemy_b_6	0.5
+enemy_b_r		enemy_b_0;enemy_b_1;enemy_b_2;enemy_b_1		0.3
+enemy_b_l		enemy_b_3;enemy_b_4;enemy_b_5;enemy_b_4		0.3
+enemy_b_u		enemy_b_2;enemy_b_3				0.2
+enemy_b_d		enemy_b_5;enemy_b_6;enemy_b_0;enemy_b_6		0.3
+
+enemy_bk_0		p	0	enemy_black_map	0	-	0	0	16	16
+enemy_bk_1		p	0	enemy_black_map	1	-	0	0	16	16
+enemy_bk_2		p	0	enemy_black_map	2	-	0	0	16	16
+enemy_bk_3		p	0	enemy_black_map	3	-	0	0	16	16
+enemy_bk_4		p	0	enemy_black_map	4	-	0	0	16	16
+enemy_bk_5		p	0	enemy_black_map	5	-	0	0	16	16
+enemy_bk_6		p	0	enemy_black_map	6	-	0	0	16	16
+
+enemy_bk_		enemy_bk_0;enemy_bk_1;enemy_bk_2;enemy_bk_3;enemy_bk_4;enemy_bk_5;enemy_bk_6	0.5
+enemy_bk_r		enemy_bk_0;enemy_bk_1;enemy_bk_2;enemy_bk_1		0.3
+enemy_bk_l		enemy_bk_3;enemy_bk_4;enemy_bk_5;enemy_bk_4		0.3
+enemy_bk_u		enemy_bk_2;enemy_bk_3				0.2
+enemy_bk_d		enemy_bk_5;enemy_bk_6;enemy_bk_0;enemy_bk_6		0.3
+
+enemy_w_0		p	0	enemy_white_map	0	-	0	0	16	16
+enemy_w_1		p	0	enemy_white_map	1	-	0	0	16	16
+enemy_w_2		p	0	enemy_white_map	2	-	0	0	16	16
+enemy_w_3		p	0	enemy_white_map	3	-	0	0	16	16
+enemy_w_4		p	0	enemy_white_map	4	-	0	0	16	16
+enemy_w_5		p	0	enemy_white_map	5	-	0	0	16	16
+enemy_w_6		p	0	enemy_white_map	6	-	0	0	16	16
+
+enemy_w_		enemy_w_0;enemy_w_1;enemy_w_2;enemy_w_3;enemy_w_4;enemy_w_5;enemy_w_6	0.5
+enemy_w_r		enemy_w_0;enemy_w_1;enemy_w_2;enemy_w_1		0.3
+enemy_w_l		enemy_w_3;enemy_w_4;enemy_w_5;enemy_w_4		0.3
+enemy_w_u		enemy_w_2;enemy_w_3				0.2
+enemy_w_d		enemy_w_5;enemy_w_6;enemy_w_0;enemy_w_6		0.3
+
+goodie_0	p	0	goodie_map	0	-	0	0	16	16
+goodie_1	p	0	goodie_map	1	-	0	0	16	16
+goodie_2	p	0	goodie_map	2	-	0	0	16	16
+goodie_3	p	0	goodie_map	3	-	0	0	16	16
+goodie_4	p	0	goodie_map	4	-	0	0	16	16
+goodie_5	p	0	goodie_map	5	-	0	0	16	16
+goodie_6	p	0	goodie_map	6	-	0	0	16	16
+goodie_7	p	0	goodie_map	7	-	0	0	16	16
+goodie_8	p	0	goodie_map	8	-	0	0	16	16
+goodie_9	p	0	goodie_map	9	-	0	0	16	16
+
+goodie		goodie_0;goodie_1;goodie_2;goodie_3;goodie_4;goodie_5;goodie_6;goodie_7;goodie_8;goodie_9	1
+
+
+

@@ -1,0 +1,64 @@
+scissors	scissors.wav
+titlemusic	prel5e_c-bach.mid
+munch		misc145-eatapple.wav
+
+munchie_g_map		munchie-g.gif		0	0	16	16	0	0
+munchie_y_map		munchie-y.gif		0	0	16	16	0	0
+munchie_r_map		munchie-r.gif		0	0	16	16	0	0
+
+spider_map			spider16.gif		0	0	16	16	0	0
+
+munchie_g_r1	p	0	munchie_g_map	0	x	0	0	16	16
+munchie_g_r2	p	0	munchie_g_map	1	x	0	0	16	16
+munchie_g_r3	p	0	munchie_g_map	2	x	0	0	16	16
+munchie_g_r_eat	p	0	munchie_g_map	2	xl	0	0	16	16
+
+munchie_g_l1	p	0	munchie_g_map	0	-	0	0	16	16
+munchie_g_l2	p	0	munchie_g_map	1	-	0	0	16	16
+munchie_g_l3	p	0	munchie_g_map	2	-	0	0	16	16
+munchie_g_l_eat	p	0	munchie_g_map	2	r	0	0	16	16
+
+munchie_y_r1	p	0	munchie_y_map	0	x	0	0	16	16
+munchie_y_r2	p	0	munchie_y_map	1	x	0	0	16	16
+munchie_y_r3	p	0	munchie_y_map	2	x	0	0	16	16
+munchie_y_r_eat	p	0	munchie_y_map	2	xl	0	0	16	16
+
+munchie_y_l1	p	0	munchie_y_map	0	-	0	0	16	16
+munchie_y_l2	p	0	munchie_y_map	1	-	0	0	16	16
+munchie_y_l3	p	0	munchie_y_map	2	-	0	0	16	16
+munchie_y_l_eat	p	0	munchie_y_map	2	r	0	0	16	16
+
+munchie_r_r1	p	0	munchie_r_map	0	x	0	0	16	16
+munchie_r_r2	p	0	munchie_r_map	1	x	0	0	16	16
+munchie_r_r3	p	0	munchie_r_map	2	x	0	0	16	16
+munchie_r_r_eat	p	0	munchie_r_map	2	xl	0	0	16	16
+
+munchie_r_l1	p	0	munchie_r_map	0	-	0	0	16	16
+munchie_r_l2	p	0	munchie_r_map	1	-	0	0	16	16
+munchie_r_l3	p	0	munchie_r_map	2	-	0	0	16	16
+munchie_r_l_eat	p	0	munchie_r_map	2	r	0	0	16	16
+
+munchie_die1	p	0	munchie_r_map	2	-	0	0	16	16
+munchie_die2	p	0	munchie_r_map	2	r	0	0	16	16
+munchie_die3	p	0	munchie_r_map	2	u	0	0	16	16
+munchie_die4	p	0	munchie_r_map	2	l	0	0	16	16
+
+munchie_g_r		munchie_g_r1;munchie_g_r2;munchie_g_r3		0.4		true
+munchie_g_l		munchie_g_l1;munchie_g_l2;munchie_g_l3		0.4		true
+
+munchie_y_r		munchie_y_r1;munchie_y_r2;munchie_y_r3		0.4		true
+munchie_y_l		munchie_y_l1;munchie_y_l2;munchie_y_l3		0.4		true
+
+munchie_r_r		munchie_r_r1;munchie_r_r2;munchie_r_r3		0.4		true
+munchie_r_l		munchie_r_l1;munchie_r_l2;munchie_r_l3		0.4		true
+
+munchie_die		munchie_die1;munchie_die2;munchie_die3;munchie_die4		0.4
+
+spider1		p	0	spider_map	0		-	0	0	8	8
+spider2		p	0	spider_map	1		-	0	0	8	8
+
+spider		spider1;spider2		0.05
+
+scissors_o	p	0	scissors-open.gif		-	0	0	12	16
+scissors_c	p	0	scissors-closed.gif		-	0	0	12	16
+

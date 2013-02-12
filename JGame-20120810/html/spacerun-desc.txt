@@ -1,0 +1,3 @@
+Minimal example game using StdGame (default version).
+<br>
+Move around using the cursors.  Pick up the blue pods but avoid the ships.

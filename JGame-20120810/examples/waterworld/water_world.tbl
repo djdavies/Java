@@ -1,0 +1,99 @@
+bubbling	water018-bubbling-l.wav
+splash		pool_splash.wav
+shoot		Steam_iron.wav
+titlemusic	cqboogie.mid
+pickup		RewardSound.wav
+
+goodies_map			goodies.gif				0	0	32	32	0	0
+goodies_water_map	goodies_water.gif		0	0	32	32	0	0
+player_map			mario_32-tr.gif			0	0	32	32	12	0
+playerclimb_map		marioclimb32.gif		4	0	32	32	8	0
+fire_map			donkeyfire-32-tr.gif	0	0	32	32	10	0
+vogel_map			vogel32.gif				6	0	32	32	4	0
+explo_map			explo32tr.gif			0	0	32	32	0	0
+crab_map			krab32tr.gif			2	0	32	32	16	0
+crab16_map			krab16tr.gif			2	0	16	16	8	0
+bullet_map			Fire-bar-seq-tr.gif		0	0	16	16	0	0
+fonts_map			font101-fudged2-tr.gif	0	0	16	16	0	0
+fontl_map			font013-tr.gif	0	0	32	32	0	0
+
+player_l1	p	1	player_map				0	-	8	8	16	16
+player_l2	p	1	player_map				1	-	8	8	16	16
+player_l3	p	1	player_map				2	-	8	8	16	16
+player_r1	p	1	player_map				0	x	8	8	16	16
+player_r2	p	1	player_map				1	x	8	8	16	16
+player_r3	p	1	player_map				2	x	8	8	16	16
+player_swu1	p	1	playerclimb_map			0	-	8	8	16	16
+player_swu2	p	1	playerclimb_map			2	-	8	8	16	16
+player_swu3	p	1	playerclimb_map			1	-	8	8	16	16
+player_swd1	p	1	playerclimb_map			0	y	8	8	16	16
+player_swd2	p	1	playerclimb_map			2	y	8	8	16	16
+player_swd3	p	1	playerclimb_map			1	y	8	8	16	16
+player_swl1	p	1	playerclimb_map			0	l	8	8	16	16
+player_swl2	p	1	playerclimb_map			2	l	8	8	16	16
+player_swl3	p	1	playerclimb_map			1	l	8	8	16	16
+player_swr1	p	1	playerclimb_map			0	r	8	8	16	16
+player_swr2	p	1	playerclimb_map			2	r	8	8	16	16
+player_swr3	p	1	playerclimb_map			1	r	8	8	16	16
+pickup		*	4	goodies_map				4	-
+pickup_w	*w	12	goodies_water_map		4	-
+bullet1		p	4	bullet_map				0	-	0	0	16	16
+bullet2		p	4	bullet_map				1	-	0	0	16	16
+bullet3		p	4	bullet_map				2	-	0	0	16	16
+bullet4		p	4	bullet_map				3	-	0	0	16	16
+bubble		p	4	bubble16-tr.gif			-	0	0	16	16
+ball_l1		p	2	fire_map				0	-	0	0	32	32
+ball_l2		p	2	fire_map				1	-	0	0	32	32
+ball_r1		p	2	fire_map				0	x	0	0	32	32
+ball_r2		p	2	fire_map				1	x	0	0	32	32
+ballwater1	p	2	barrel-nofire32.gif		-	0	0	32	32
+ballwater2	p	2	barrel-nofire32.gif		x	0	0	32	32
+vogel_l1	p	2	vogel_map				0	-	0	0	32	32
+vogel_l2	p	2	vogel_map				1	-	0	0	32	32
+vogel_r1	p	2	vogel_map				0	x	0	0	32	32
+vogel_r2	p	2	vogel_map				1	x	0	0	32	32
+fish_l		p	2	anglerfish32tr.gif		x	0	0	32	32
+fish_r		p	2	anglerfish32tr.gif		-	0	0	32	32
+
+crab_u1		p	2	crab16_map				0	-
+crab_u2		p	2	crab16_map				1	-
+crab_d1		p	2	crab16_map				0	y
+crab_d2		p	2	crab16_map				1	y
+crab_l1		p	2	crab16_map				0	l
+crab_l2		p	2	crab16_map				1	l
+crab_r1		p	2	crab16_map				0	r
+crab_r2		p	2	crab16_map				1	r
+                                           
+explo1		p	2	explo_map				0	-
+explo2		p	2	explo_map				1	-
+explo3		p	2	explo_map				2	-
+explo4		p	2	explo_map				3	-
+explo5		p	2	explo_map				4	-
+explo6		p	2	explo_map				5	-
+
+empty		 	0	null						-
+waterfilled	w	8	waterfilled.gif			-
+waterfilled	w	8	waterfilled.gif			-
+water1		w1	8	water1.gif				-
+water2		w2	8	water2.gif				-
+platform2	-	1	platform-ledge1b.gif	-
+wall1		#	2	wall1b.gif				-
+
+player_l	player_l1;player_l2;player_l3		0.3
+player_r	player_r1;player_r2;player_r3		0.3
+player_swu	player_swu1;player_swu2;player_swu1;player_swu2;player_swu3;player_swu3	0.3
+player_swd	player_swd1;player_swd2;player_swd1;player_swd2;player_swd3;player_swd3	0.3
+player_swl	player_swl1;player_swl2;player_swl1;player_swl2;player_swl3;player_swl3	0.3
+player_swr	player_swr1;player_swr2;player_swr1;player_swr2;player_swr3;player_swr3	0.3
+ball_l		ball_l1;ball_l2			0.4
+ball_r		ball_r1;ball_r2			0.4
+vogel_l		vogel_l1;vogel_l2		0.15
+vogel_r		vogel_r1;vogel_r2		0.15
+ball_water	ballwater1;ballwater2	0.15
+explo		explo1;explo2;explo3;explo4;explo5;explo6	0.4
+crab_u		crab_u1;crab_u2		0.15
+crab_d		crab_d1;crab_d2		0.15
+crab_l		crab_l1;crab_l2		0.15
+crab_r		crab_r1;crab_r2		0.15
+bullet		bullet1;bullet2;bullet3;bullet4;	1.0
+

@@ -1,0 +1,2 @@
+A simple Robotron clone, specially designed for mobiles.  Use cursor keys or
+mouse/touch screen to move and shoot.

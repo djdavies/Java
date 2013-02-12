@@ -1,0 +1,92 @@
+splash_image	-	0	dingbats-font1-sm.png	-
+
+tile1_map	dingtiles-sm.png	0	0	64	64	0	0
+tile2_map	dingtiles5-sm.png	0	0	64	64	0	0
+tile3_map	dingtiles3-sm.png	0	0	64	64	0	0
+tile4_map	dingtiles4-sm.png	0	0	64	64	0	0
+
+tile1_0		10	1	tile1_map	1	-
+tile1_1		11	1	tile1_map	2	-
+tile1_2		12	1	tile1_map	3	-
+tile1_3		13	1	tile1_map	4	-
+tile1_4		14	1	tile1_map	5	-
+tile1_5		15	1	tile1_map	6	-
+tile1_6		16	1	tile1_map	7	-
+tile1_7		17	1	tile1_map	8	-
+
+tile2_0		20	1	tile2_map	0	-
+tile2_1		21	1	tile2_map	1	-
+tile2_2		22	1	tile2_map	2	-
+tile2_3		23	1	tile2_map	3	-
+tile2_4		24	1	tile2_map	4	-
+tile2_5		25	1	tile2_map	5	-
+tile2_6		26	1	tile2_map	6	-
+tile2_7		27	1	tile2_map	7	-
+
+tile3_0		30	1	tile3_map	0	-
+tile3_1		31	1	tile3_map	1	-
+tile3_2		32	1	tile3_map	2	-
+tile3_3		33	0	tile3_map	3	-
+tile3_4		34	1	tile3_map	4	-
+tile3_5		35	1	tile3_map	5	-
+tile3_6		36	1	tile3_map	6	-
+tile3_7		37	1	tile3_map	7	-
+tile3_8		38	0	tile3_map	8	-
+tile3_9		39	1	tile3_map	9	-
+tile3_10	310	1	tile3_map	10	-
+tile3_11	311	1	tile3_map	11	-
+
+tile4_0		40	1	tile4_map	0	-
+tile4_1		41	1	tile4_map	1	-
+tile4_2		42	1	tile4_map	2	-
+tile4_3		43	1	tile4_map	3	-
+tile4_4		44	1	tile4_map	4	-
+tile4_5		45	1	tile4_map	5	-
+tile4_6		46	1	tile4_map	6	-
+tile4_7		47	1	tile4_map	7	-
+
+alarmbell	-	0	alarmbell-sm.png	-
+alarmbell2	-	0	alarmbell-sm.png	x
+
+bonus-pair		-	0	bonus-pair2.png	-
+bonus-triplet	-	0	bonus-triplet4.png	-
+bonus-two pairs	-	0	bonus-two pairs.png	-
+bonus-set		-	0	bonus-set.png	-
+bonus-two sets	-	0	bonus-two sets.png	-
+bonus-quad		-	0	bonus-quad.png	-
+bonus-quint		-	0	bonus-quint.png	-
+
+star11		-	0	circle1-sm.png	-
+star12		-	0	spiral4-sm.png	-
+star13		-	0	star1-sm.png	-
+star21		-	0	circle2-sm.png	-
+star22		-	0	spiral3-sm.png	-
+star23		-	0	star2-sm.png	-
+star31		-	0	circle3-sm.png	-
+star32		-	0	spiral1-sm.png	-
+star33		-	0	star3-sm.png	-
+pointer		-	0	pointer-sm.png	-
+bonus1		-	0	arrowicon-sm.png	-
+bonus2		-	0	arrowicon2-sm.png	-
+bonus3		-	0	arrowicon3-sm.png	-
+
+background1	-	0	Charged Flame-dark.jpg	-
+background2	-	0	Turkish Embers-dark.jpg	-
+background3	-	0	A Terror of Orchids-dark.jpg	-
+background4	-	0	WinkDingbats-sm-dark.jpg	-
+background5	-	0	Trip Flambe-sm-dark.jpg	-
+
+background1l0	-	0	polkadots-tr-sm.png		-
+background2l0	-	0	Turkish Embers-tr.png	-
+
+tile2		*2	1	tile1-sm.png	-
+bullet		-	0	triangle-sm.png	-
+explo1		-	0	explo1-sm.png	-
+explo2		-	0	explo3-sm.png	-
+explo3		-	0	explo5-sm.png	-
+null		 	0	null	-
+
+logo1		-	0	dingbats-font1-sm.png	-
+logo2		-	0	dingbats-font2-sm.png	-
+logo3		-	0	dingbats-font3-sm.png	-
+logo4		-	0	dingbats-font4-sm.png	-

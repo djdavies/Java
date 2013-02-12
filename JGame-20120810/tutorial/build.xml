@@ -1,0 +1,201 @@
+<project name="Tutorial" default="jre" basedir="..">
+	<!-- application-specific. Make sure basedir matches path. -->
+	<description>
+		Tutorials 1 .. 9
+	</description>
+	<property name="jarname"  value="Tutorial"/>
+	<property name="apppath"  value="tutorial"/>
+	<property name="mainclass"  value="tutorial.Example4"/>
+	<!-- the same for all applications -->
+	<property name="jars"  value="jars"/>
+	<property name="destdir"  value="classes-examples"/>
+
+	<!-- j2me specific stuff -->
+	<property environment="env"/>
+	<property name="cldcapi" value="${env.WTK_HOME}/lib/cldcapi11.jar"/>
+	<property name="midpapi" value="${env.WTK_HOME}/lib/midpapi20.jar"/>
+	<property name="preverify" value="${env.WTK_HOME}/bin/preverify"/>
+	<property name="proguard" value="${env.PROGUARD_HOME}/lib/proguard.jar"/>
+	<property name="jartojad" value="jars/jar2jad.jar"/>
+	<!-- android specific stuff -->
+	<condition property="android"
+	value="${env.ANDROID_HOME}/tools/android.bat"
+	else ="${env.ANDROID_HOME}/tools/android">
+		<os family="windows"/>
+	</condition>
+	<!-- sign with secret key when -Dpublish is passed -->
+	<condition property="androidbuildproperties"
+	value="build.properties.secret"
+	else="build.properties">
+		<isset property="publish"/>
+	</condition>
+
+	<target name="mkdirs" description="Create destination directories">
+		<delete dir="${destdir}"/>
+	  	<mkdir dir="${destdir}"/>
+	  	<mkdir dir="${jars}"/>
+		<copy todir="${destdir}/${apppath}">
+			<fileset dir="${apppath}">
+				<include name="*.tbl"/>
+				<include name="*.jpg"/>
+				<include name="*.png"/>
+				<include name="*.gif"/>
+				<include name="*.wav"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- 
+	<target name="mkdirs-android" description="Create destination directories">
+		<delete dir="${destdir}"/>
+	  	<mkdir dir="${destdir}"/>
+	  	<mkdir dir="${jars}"/>
+		<copy todir="${destdir}/assets">
+			<fileset dir="${apppath}">
+				<include name="*.tbl"/>
+				<include name="*.jpg"/>
+				<include name="*.png"/>
+				<include name="*.gif"/>
+				<include name="*.wav"/>
+			</fileset>
+		</copy>
+	</target>
+	-->
+
+	<target name="jre" description="Compile for JRE" depends="mkdirs">
+		<copy todir="${destdir}">
+			<fileset dir="classes-jre"/>
+		</copy>
+		<javac srcdir="." destdir="${destdir}" source="1.3" target="1.3"
+		debug="true">
+			<include name="${apppath}/*.java"/>
+		</javac>
+		<jar destfile="${jars}/${jarname}.jar">
+			<fileset dir="${destdir}"/>
+			<manifest>
+				<attribute name="Main-class"
+				value="${mainclass}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="jogl" description="Compile for JRE-JOGL" depends="mkdirs">
+		<copy todir="${destdir}">
+			<fileset dir="classes-jogl"/>
+		</copy>
+		<javac srcdir="." destdir="${destdir}" source="1.4" target="1.4"
+		debug="true">
+			<include name="${apppath}/*.java"/>
+		</javac>
+		<jar destfile="${jars}/${jarname}Jogl.jar">
+			<fileset dir="${destdir}"/>
+			<manifest>
+				<attribute name="Main-class"
+				value="${mainclass}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- not yet ready
+	<target name="android" description="Compile for Android"
+	depends="mkdirs-android">
+		<copy todir="${destdir}/src">
+			<fileset dir="src-base"/>
+		</copy>
+		<copy todir="${destdir}">
+			<fileset dir="src-android"/>
+		</copy>
+		<copy todir="${destdir}">
+			<fileset dir="${apppath}">
+				<include name="AndroidManifest.xml"/>
+			</fileset>
+		</copy>
+		<copy file="${apppath}/${androidbuildproperties}"
+		tofile="${destdir}/build.properties" />
+		<copy todir="${destdir}/res">
+			<fileset dir="${apppath}/res"/>
+		</copy>
+		<copy todir="${destdir}/src/${apppath}">
+			<fileset dir="${apppath}">
+				<include name="*.java"/>
+			</fileset>
+		</copy>
+		<exec executable="${android}" dir="${destdir}">
+			<arg value="update"/>
+			<arg value="project"/>
+			<arg value="- -name"/> please remove space
+			<arg value="${jarname}"/>
+			<arg value="- -target"/> please remove space
+			<arg value="android-8"/>
+			<arg value="- -path"/> please remove space
+			<arg value="."/>
+		</exec>
+		<ant dir="${destdir}" target="release"/>
+	</target>
+	-->
+
+	<target name="midp" description="Compile for J2ME" depends="mkdirs">
+		<delete dir="${destdir}-tmp"/>
+		<mkdir dir="${destdir}-tmp"/>
+		<javac srcdir="." destdir="${destdir}-tmp" source="1.3" target="1.3"
+		debug="true"
+		bootclasspath="${cldcapi};${midpapi}"
+		classpath="classes-midp">
+			<include name="${apppath}/*.java"/>
+		</javac>
+		<exec executable="${preverify}">
+			<arg value="-classpath"/>
+			<arg value="${cldcapi}${path.separator}${midpapi}${path.separator}classes-midp"/>
+			<arg value="-d"/>
+			<arg value="${destdir}"/>
+			<arg value="${destdir}-tmp"/>
+		</exec>
+		<jar destfile="${jars}/${jarname}Midlet.jar">
+			<fileset dir="${destdir}"/>
+			<fileset dir="classes-midp"/>
+			<manifest>
+				<attribute name="MIDlet-1" 
+					value="${jarname}, , ${mainclass}"/>
+				<attribute name="MIDlet-Name" value="${jarname}"/>
+				<attribute name="MIDlet-Jar-URL" value="${jarname}Midlet.jar"/>
+				<attribute name="MIDlet-Vendor" value="JGame"/>
+				<attribute name="MIDlet-Version" value="1.2"/>
+				<attribute name="MicroEdition-Configuration" value="CLDC-1.1"/>
+				<attribute name="MicroEdition-Profile" value="MIDP-2.0"/>
+			</manifest>
+		</jar>
+		<!-- shrink using proguard (optional) -->
+		<mkdir dir="${destdir}-shrunk-tmp"/>
+		<mkdir dir="${destdir}-shrunk"/>
+		<java jar="${proguard}" fork="true">
+			<arg value="-dontusemixedcaseclassnames"/>
+			<arg value="-libraryjars ${cldcapi}"/>
+			<arg value="-libraryjars ${midpapi}"/>
+			<arg value="-allowaccessmodification"/>
+			<arg value="-overloadaggressively"/>
+			<arg value="-defaultpackage ''"/>
+			<arg value="-verbose"/>
+			<arg value="-keep"/>
+			<arg value="public class * extends javax.microedition.midlet.MIDlet"/>
+			<arg value="-injars ${jars}/${jarname}Midlet.jar"/>
+			<arg value="-outjars ${destdir}-shrunk-tmp/${jarname}Midlet.jar"/>
+		</java>
+		<exec executable="${preverify}">
+			<arg value="-classpath"/>
+			<arg value="${cldcapi}${path.separator}${midpapi}"/>
+			<arg value="-d"/>
+			<arg value="${destdir}-shrunk"/>
+			<arg value="${destdir}-shrunk-tmp/${jarname}Midlet.jar"/>
+		</exec>
+		<copy file="${destdir}-shrunk/${jarname}Midlet.jar" todir="${jars}"/>
+		<!-- finally, create jad -->
+		<java jar="${jartojad}" fork="true">
+			<arg value="${jars}/${jarname}Midlet.jar"/>
+			<arg value="${jars}/${jarname}Midlet.jad"/>
+		</java>
+		<!-- stat -c '%s' ${APPNAME}.jar | xargs echo 'MIDlet-Jar-Size:' | \
+        cat ${MANIFESTNAME} /dev/stdin >${APPNAME}.jad -->
+	</target>
+
+</project>
+

@@ -1,0 +1,50 @@
+<project name="skeleton" default="genskeleton">
+	<description>
+		Make JGame skeleton.
+		Usage: ant -Dapppath=my/game/path -Dpackagename=my.game.path 
+		           -Dmainclass=GameClassName
+	</description>
+
+	<target name="genskeleton" description="Generate game skeleton">
+		<mkdir dir="${apppath}" />
+
+		<copy file="build.xml.skeleton" tofile="${apppath}/build.xml" />
+		<replace file="${apppath}/build.xml"
+			token="mygame.MyGame" value="${packagename}.${mainclass}" />
+		<replace file="${apppath}/build.xml"
+			token="MyGame" value="${mainclass}" />
+		<replace file="${apppath}/build.xml"
+			token="mygame" value="${apppath}" />
+
+		<copy file="MyGame.java" tofile="${apppath}/${mainclass}.java" />
+		<replace file="${apppath}/${mainclass}.java"
+			token="MyGame" value="${mainclass}" />
+		<replace file="${apppath}/${mainclass}.java"
+			token="mygame" value="${packagename}" />
+
+		<copy todir="${apppath}">
+			<fileset dir=".">
+				<include name="*.png" />
+				<include name="*.tbl" />
+				<include name="build.properties" />
+				<include name="AndroidManifest.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${apppath}/res">
+			<fileset dir="res" />
+		</copy>
+		<replace file="${apppath}/res/layout/main.xml"
+			token="MyGame" value="${mainclass}" />
+		<replace file="${apppath}/res/values/strings.xml"
+			token="MyGame" value="${mainclass}" />
+		<replace file="${apppath}/AndroidManifest.xml"
+			token="mygame" value="${packagename}" />
+		<replace file="${apppath}/AndroidManifest.xml"
+			token="MyGame" value="${mainclass}" />
+		<!--         
+sed -i -e "s/MyGame/${MAINCLASS}/g" ${APPPATH}/res/layout/main.xml
+sed -i -e "s/MyGame/${MAINCLASS}/g" ${APPPATH}/res/values/strings.xml
+sed -i -e "s/mygame.MyGame/${PACKAGENAME}/" ${APPPATH}/AndroidManifest.xml
+		-->
+	</target>
+</project>

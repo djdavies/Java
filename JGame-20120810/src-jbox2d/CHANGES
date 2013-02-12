@@ -1,0 +1,130 @@
+---------------------------------------
+JBOX2D MOBILE PATCH CHANGELOG
+---------------------------------------
+
+Step 1: make it J2ME compatible
+
+removed asserts
+
+created asin implementation in PolygonShape.
+
+Changed Pair and BufferedPair comparable to non-generics type. Then I found
+that Comparable is not in j2me! So I removed Comparable altogether.  Is it
+unused?
+
+Replaced enums by ints
+
+PolygonDef List replaced by Vector
+
+PolygonShape.computeCentroid replaced by Vector version
+
+replaced getManifolds by getManifold (since there is always 0 or 1 manifold)
+in Contact, CircleContact, NullContact, PolyAndCircleContact, PolyContact.
+Replaced code in ContactManager, ContactSolver, Island, Contact.
+
+Contact.s_registers converted to Vector
+
+removed old generics method Island.report
+
+World: replaced postStepList by Vector
+
+CircleContact clone -> return type Contact
+
+Working!
+
+
+Step 2: Optimisation
+
+Performance was measured by using profiling in the J2ME emulator.  I chose the
+most time consuming functions and tried to optimise them one by one.  The "v"s
+indicate performance log numbers (not included in this package).  Total
+performance improvement: 20-30% (I did not benchmark the result properly, but
+only measured relative amounts of time consumed).
+
+
+Most time is spent in ContactSolver.solveVelocityConstraints:
+clone()/cross()/object creation and methods calls take a lot of time
+
+Moved v1, v2 outside the loop, and replaced clone by field assigment.
+
+performance gain: about 30% according to profiler (v1 -> v2)
+
+
+The next worst thing is ContactSolver.solvePositionConstraints.
+
+calling getXForm takes a lot of time as a new Mat22 is created and copied
+every time, though the Mat is used read-only. Replaced by m_xf.
+
+calling getLocalCenter takes a lot of time: a function call and clone (though
+the result is used as read only).  So these two calls were inlined.
+
+Performance gain: double-triple according to profiler (v2 -> v3)
+
+
+A lot of time is spent in ContactSolver.<init>. I found the same two
+statements above in ContactSolver.<init>. These got the same treatment.
+
+Performance gain: about 30% (v3 -> v4)
+
+
+After these optimisations, more than 50% of time is spent in
+PolyContact.evaluate().  
+
+Again a bottleneck is getXForm, so the two getXForm calls were replaced by
+m_xf.
+
+Performance gain: about 20% (v4 -> v5)
+
+
+A lot of time is spent in TOI.timeOfImpact / Distance.InPoints / Vec2.abs,
+max, sub. The Vec2.* were inlined.
+
+Performance gain (within InPoints): more than a factor 2.
+
+
+CollidePoly.collidePolygons / edgeSeparation is a big tight loop
+(about 8% of total time spent).  
+
+A lot of time is spent in the no-arg Mat22 constructor in collidePolygons.  I
+found the no arg constructor unnecessarily calls clone(). Optimised.
+Performance gain: about 25% (v6 -> v7)
+
+
+Of the Common methods, Mat22.mul is the method that takes the most time (4.8%)
+overall, with Vec2.<init> a close second (4.0%).
+
+Mat22.mul(Mat22) inlined -> about 40% performance gain (v7 -> v8)
+
+Vec2.<init>s optimised  -> little performance gain (v8 -> v9)
+
+
+CollidePoly.clipSegmentToLine spends 50% of its time in ClipVertex.<init>.
+Optimised init so that ContactID is passed as contructor parameter.
+Performance gain: about 30% (of clipSegmentToLine)
+
+PolyContact.evaluate spends a lot of time in ContactID.<init> and other inits.
+I found that it inefficiently copies ManifoldPoint.  The Manifold constructor
+does not clone properly, but the ManifoldPoint one does.  I created a Manifold
+constructor that only create the point array of the appropriate size.  The for
+loop inside evaluate, minus the explicit copies of the point fields does the
+cloning.  I changed the code in evaluate so everything is copied only once.
+Performance gain evaluate(): about 25%.
+
+tried to make a fixed point version of ContactSolver.solveVelocityConstraints
+(...FX).
+
+collidePoly.edgeSeparation - direct access of poly fields - 20% gain in
+findMaxSeparation? (v13)
+
+CollidePoly.clipSegmentToLine - copy vector fields into ClipVertex instead of
+cloning vector. -> almost double perf gain in clipSegmentToLine (v13->v14)
+
+tried making fixed point versions of the most often used methods
+mat22.mul(mat) and mat22.mul(vec), but this did not result in speed
+improvement.
+
+Engine keeps running out of memory so I lowered the maxProxies parameter.
+
+Inlined MathUtils.clamp code.  Is about twice as fast according to emulator.
+
+

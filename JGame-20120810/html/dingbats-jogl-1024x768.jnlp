@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp codebase="http://www.13thmonkey.org/~boris/jgame/JGame/html" href="dingbats-jogl-1024x768.jnlp">
+  <information>
+    <title>Dingbat Attack</title>
+    <vendor>Boris van Schooten</vendor>
+    <homepage href="http://www.13thmonkey.org/~boris/jgame/"/>
+    <description>A JGame example game</description>
+    <offline-allowed/>
+  </information>
+
+    <resources>
+      <j2se href="http://java.sun.com/products/autodl/j2se" version="1.4+"/>
+      <property name="sun.java2d.noddraw" value="true"/>
+      <jar href="../jars/DingbatsJogl.jar" main="true"/>
+      <extension name="jogl" href="http://worldwind.arc.nasa.gov/java/jogl/webstart/jogl.jnlp" />
+    </resources>
+
+  <application-desc main-class="examples.dingbats.Dingbats">
+  	<argument>1024</argument>
+  	<argument>768</argument>
+  </application-desc>
+
+</jnlp>

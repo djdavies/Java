@@ -1,0 +1,22 @@
+Online game generator
+---------------------
+
+
+The game generator is meant for Web deployment.  It uses html and php to
+create a set of parameters from an html form, which can then be read by the
+SimpleGeneratedGame class.  See website/ for the php/html code.  This program
+is still in its development stages, so expect bugs, quirks and lack of
+documentation!  See website/index.html for some more documentation.
+
+SimpleGeneratedGame reads the game parameters using AppConfig.  If run as an
+applet, it takes its config filename from a parameter called configfile.  If
+run as an application, it opens a file selector in which you can select an
+appconfig file.  Some example *.appconfig files are supplied in the examples/
+directory.
+
+From the JGame main directory, try:
+
+  java gamegen.SimpleGeneratedGame [ <width> <height> ]
+or:
+  java -jar jgame-gamegen.jar [ <width> <height> ]  (if you generated the jar)
+

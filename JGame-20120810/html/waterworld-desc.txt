@@ -1,0 +1,8 @@
+Move around using the cursor keys, use W,S,A,D to shoot.
+<br>
+Get all the goodies to proceed to the next level. 
+<P>
+After the five levels are finished, the game gets faster.
+<P>
+This game needs more levels, otherwise it's finished.
+

@@ -1,0 +1,8 @@
+Pacman and zombies - a mashup.
+Instructions: use cursor keys to move. Eat all pills to advance a level.
+Use power pills to eat zombies. Eat more than 10 zombies in a row to earn a new power pill.
+
+<p>
+
+Credits: Zombie sprite by Tsuyoshi. Zombie sounds by Kathol. Backgrounds by freestockimages.org. 
+

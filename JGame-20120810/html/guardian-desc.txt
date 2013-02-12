@@ -1,0 +1,5 @@
+A Defender clone, alpha version.
+<br>
+Pick up the humans and drop them at the base tower.
+<br>
+Use cursors to move, Z to fire.  

@@ -1,0 +1,962 @@
+-----------------------
+Development with JGame
+-----------------------
+
+----F U N D R A I S E R-------------------------------------
+Want to support JGame development?  
+DONATE NOW  at http://www.13thmonkey.org/~boris/jgame/
+------------------------------------------------------------
+
+Version: 3.6, 10 aug 2012 (20120810),
+Boris van Schooten
+
+This document explains the theoretical background of the engine, design
+guidelines, and performance issues.  We assume that the reader is familiar
+with Java.  An install and compile guide and general overview is found in the
+README file.  More information about usage of the JGame packages, classes,
+and methods are found in the Javadocs. 
+
+For those who are already experienced in 2D game programming will probably
+find most JGame concepts intuitive.  So, if you want to get hands-on
+experience right away, you may want to skip to the tutorials (see tutorial/
+directory) and the javadoc.  
+
+Main project goals
+------------------
+
+The JGame project has two main goals: the first is to provide a very high
+level API that tries to capture the universal concepts found in the majority
+of "classic" style games.  The second is to provide an engine that can run
+well on as many platforms as possible.  So, you can write a game in only a
+couple of hundred lines of code that works, without any modification, on
+platforms ranging from a cheap feature phone to a 10 year old Unix workstation
+to a 3D accelerated desktop PC.
+
+Platforms now include J2ME (MIDP2.0/CLDC1.1), Android (2.1+) plain JRE1.3+,
+and JRE1.4+/OpenGL (in both cases, applications can be deployed as webstart or
+applet).  The graphical capabilities of the different platforms are rather
+different.  To address this problem, JGame provides both basic and extended
+graphical functions, with the basic functions available on all platforms, and
+the extended functions falling back to basic functions on platforms that do
+not support then.  Extended graphical functions, such as alpha-blended
+rotating/zooming sprites, shaded polygons, multilayer parallax scrolling, and
+rotating/zooming view, are available on OpenGL, Android, and Flash (JGame
+Flash is a separate package).
+
+JGame is designed so that the most common game logic found in typical action
+games can be programmed with an absolute minimum amount of code.  The engine
+means to provide a complete "boilerplate" API, including not only graphics,
+sound, and in-game logic, but also game state sequencing, persistent store,
+highscores, and preferences.  This conforms to my own personal wish to create
+games while avoiding time-consuming repetitive work as much as possible (i.e.
+the "lazy programmer" approach).
+
+Creating an animating object or scrolling the playfield can be done with a
+single line of code.  Making an object remove another when touched, or bump
+into a particular kind of background feature can be done with only 2-4 lines
+of code.  Initiating a game over, next level, or death sequence can be done
+with a single line; defining what happens in them can be done with only a
+couple of lines extra.  Programming complex customised behaviour, such as that
+of a platform game player, a Pacman ghost, or a Gauntlet/Wolfenstein-2D
+monster, which are among the most complex things found in existing 2D games,
+is still relatively easy.  Programming a prototype game in JGame may take as
+little as 30 minutes; I also did complete development cycles from concept to
+release in a few hours.  I published more than 25 games total using JGame.
+Most games took me between a few hours and a few days to write.
+
+
+The engine
+----------
+
+Action game programming involves some special techniques which may be
+surprising to those who are unfamiliar with it.  In fact, my experience is
+that the complexity of game programming is often seriously underestimated.
+While JGame is based on high-level concepts, we shall nevertheless give a
+detailed account of its essential inner workings.  We shall start with the
+most basic principles, and proceed with a detailed description of the dynamics
+that JGame uses.  
+
+Animation and frame rate
+------------------------
+
+Almost all games simulate dynamics in the same way: they update a set of
+animated objects incrementally at (an either fixed or variable) time intervals
+(i.e. time steps).  This involves updating the objects' positions and painting
+them on the screen.  This technique has similarities with animation
+techniques.  In "cartoon" animation for example, you create an impression of
+continuous movement by showing a number of successive drawings, with each
+drawing being a little different from the last.  Each such drawing or update
+is called a frame.  For each frame, you should define how the game objects
+should move one step.  In JGame, you can specify this in the method doFrame()
+in JGEngine.  If you don't specify this method, nothing will happen.  After
+the frame's updates are done, the engine paints the game objects at their
+current positions.  Additionally, you can do your own painting (for example
+for in-game messages or status information) by defining the paintFrame()
+method.
+
+The speed at which successive frames are generated in games varies from about
+2 frames per second (for "board game" style motion in old games) to about 100
+frames per second (for smooth, realistic movement).  JGame uses such
+frame-based dynamics too.  It provides two ways to generate frames: fixed
+frame rate and video-synchronised frame rate (the latter is OpenGL-only).  In
+fixed frame rate mode, it generates frames at a fixed speed that you can
+specify.  In video synchronised mode, frames are generated in sync with the
+screen refresh rate of the particular computer the application is running on,
+which provides the maximum possible animation smoothness.  This does mean,
+however, that the frame rate depends on the particular system, and your
+application has to adapt to possible changes in frame rate, by adjusting
+object speeds, animation speeds, timer speeds, etc. to the current frame rate.
+For example, if you have half the expected frame rate, the number of pixels an
+object should move should double for each frame, to arrive at the same
+effective speed.  This is significantly more difficult to program than the
+fixed frame rate case.  JGame does provide some features to help deal with
+variable frame rates.  It has a gamespeed variable, which denotes the relative
+speed at which the game is running, within specified minimum and maximum
+limits.  Gamespeed directly influences most of the standard features (see
+section "adapting the game speed").  This usually does most of the work, but
+usually, you still have to adapt some of you game's custom timers and speed
+settings using gamespeed.
+
+Drawing the game objects on screen is usually the most processor-intensive
+activity of a game application.  Games with a fixed frame rate can therefore
+adapt to slow computers by sometimes skipping the draw action, while still
+updating the game objects' states.  This is called "frame skipping", which
+results in jerky or jumpy screen motion, while the game keeps running at its
+original speed.  JGame uses frame skipping in fixed frame rate mode, which is
+the easiest for the application programmer.  Of course, you don't want a game
+to skip all of its frames, so that you can't see what's going on anymore.  So,
+you'll want to set a limit to the amount of frames the engine is allowed to
+skip before drawing a frame again.  If the limit is exceeded, the game will
+then slow down instead of skipping more frames.  In JGame, frame rate and
+maximum frame skip can be set with setFrameRate().  Note that in fixed frame
+rate mode, the default gamespeed is 1.0, but it is also possible to set it to
+a different (fixed) value to speed up or slow down a game, or have two
+different (but fixed) frame rates for different platforms (in particular,
+you'll want this for JRE and MIDP).
+
+In video synchronised mode, the values passed to setFrameRate are still used,
+though in a different way.  The supplied frame rate is the frame rate at which
+gamespeed is 1.0.  If the actual frame rate is different, gamespeed is set
+accordingly (double frame rate results in a gamespeed of 0.5 for example).  In
+video synchronised mode, frame skipping is not used.  Instead, gamespeed is
+again used to compensate for slower frame rates, up to a minimum set by the
+maximum frame skip value.  That is, if frameskip is 2 for example (skip a
+maximum of 2 successive frames), the minimum allowed game speed is 3
+(corresponding to a frame rate of one third of the "normal" frame rate).  This
+way you can ensure that gamespeed will stay within reasonable boundaries.
+Gamespeed also has a hard lower bound, determined by the maximum expected
+screen refresh rate of just about any system, which is currently hardcoded to
+95Hz.  If the frame rate somehow exceeds this maximum (this happens on some
+systems that do not listen to video sync requests), it is throttled by
+suspending the screen update thread for a short time.
+
+Note that some modern games tend to over-produce frames (often producing
+100-300 frames per second, while your screen can only show about 60 on
+average), which is often just to make up for the lack of availability of
+screen-synchronous operation.  Often they eat up all CPU power in the process.
+If you are looking for a sensible setting of the frame rate, I found that at
+around 30-70 frames per second, JGame produces animation that's nearly as
+smooth as higher framerates.  On fast machines, the example games will then
+use as little as 5-10% of CPU.
+
+Game object updating
+--------------------
+
+Action and arcade games typically involve a dynamical environment in which
+animated agents move around and interact with each other and with the
+environment.  The kind of system involved here has a lot of similarities with
+a physics simulation model.  Games, of course, simplify physical realism a
+lot, although modern games follow realistic physics models more and more
+closely.  But even the oldest 2D games may be considered physics simulations.
+
+For those familiar with parallel and concurrent programming, it may help to
+know that games involve a unique pattern of parallelism which is rarely found
+in other applications.  In an action game, the animated game objects are
+effectively parallel processes.  Some call this "synchronous parallelism", as
+it involves updating in sync in discrete time steps.  It involves some of the
+problems (i.e. concurrency problems) also found in other parallel programs.
+JGame tries to provide a model that gives as little trouble as possible most
+of the time.  It does pay, however, to understand the dynamical model in
+detail.  In JGame, the game objects are the objects of the class JGObject.
+JGObjects can be created and deleted during the course of the game, and they
+will animate according to the methods defined in the objects themselves.  Each
+object has move(), hit(), and hit_bg() methods that define how it should resp.
+be updated, and react to collisions.  A collision occurs when two objects
+physically overlap.  Object-object collision is calculated using bounding
+boxes, which are approximations of the object's physical occupation of space.
+The bounding box of an object may be specified in several ways, for example,
+it may be dependent on the image, or fixed.  The ideal dimensions of a
+bounding box depend on factors such as perceived fairness or difficulty
+level.
+
+The JGObjects' move, hit, and hit_bg methods are only called when you tell the
+engine to do so.  From within the doFrame method, you can call moveObjects(),
+checkCollision(), and checkBGCollision(), which in turn call the move, hit,
+and hit_bg objects in the game objects as appropriate.  In most action games,
+each frame involves the following things: move all objects one step (usually a
+few pixels), check if certain types of objects collide with each other, and
+check if objects bump into features in the environment (i.e. walls,
+platforms, doors, pickups).  So typically you want to call moveObjects() once,
+then call checkCollision/checkBGCollision several times with different
+parameters, handling the collision of the different types of object in turn.
+You can also choose not to call these methods during some frames, or call them
+multiple times, or in different order, as you see fit for your particular game
+or in-game sequences.  
+
+The moveObjects and check...Collision methods, as well as several other
+methods such as countObjects and removeObjects, take object type specifiers as
+arguments.  Each JGObject is assigned a type (called the collision ID or CID),
+which is effectively a bitfield.  The type specifiers are bitmasks, which
+match an object's type when the bitwise AND of the specifier with the CID is
+not zero.  Typically, a particular bit in the bitfield being one designates a
+particular kind of behaviour in the game.  For example, the player has type
+1, a bullet has type 2, a monster or bomb has type 4, a pickup has type 8.
+Now you can easily specify that type 2 collides with type 4, and type 1
+collides with types 4+8 (type specifier has the value 12).  Background tiles
+can also be assigned types for use with checkBGCollision and the tile
+interaction methods.
+
+Object lifecycle and concurrency issues
+---------------------------------------
+
+The JGObject's move and hit methods typically change something in the state of
+the object (such as its position, speed or animation), or may delete the
+object, create new ones, modify the state of others, or modify the global game
+state.  These methods should just do their updates as necessary for this
+frame, then return immediately.  When moveObjects or check...Collision are
+called, the engine will call each appropriate method of each object in turn.
+Even though the objects are conceptually parallel, one should keep in mind
+that they are in reality updated one at a time.  At the moment that one object
+updates itself, it should be aware that part of the objects have already been
+updated, and part of them haven't.  This is important when the object reads or
+writes the state of other objects.  There are several ways to ensure precisely
+consistent behaviour.  One way is to ensure that the object variables in
+question are only updated by a single "master object", another is to use the
+getLast...() methods to get the object's previous state, yet another is to
+split object movement into multiple moveObjects() calls with different
+parameters, ensuring one type of object is updated after the other.
+
+More issues emerge when objects are created and removed.  One issue is whether
+newly created objects should already participate in the remaining action of
+the current frame, or should start updating only after the frame ends.  In
+JGame we chose the latter, because this results in more controllable
+behaviour.  In particular, this guarantees a uniform lifecycle of all objects:
+the order in which the objects' methods are called is always the one defined
+in the doFrame method.  For example, this means we can ensure that an object
+will always move() first before it can be hit() and is painted on the screen,
+even if it was created when doFrame was already halfway through its updating
+steps.  Removing objects using remove() is handled differently.  Typically you
+want objects marked for removal to be removed as soon as possible.  We chose
+to delay actual removal until the end of the current moveObjects or
+check...Collision action, in case the remove was issued by one of the objects
+during either of these parallel actions.  This ensures that any object that
+is removed during the current parallel action always has the chance to do its
+own work for that action before it is removed, which is conceptually the most
+compatible with the parallelism concept of these actions.  For example, if two
+objects of the same type collide, and their hit methods remove the other
+object (i.e. they try to remove each other), then both will always get the
+chance to remove the other.  In contrast, if an object is removed directly by
+the doFrame method, it will be removed immediately.  The removeObjects()
+(remove multiple objects) method is special: it specifies an object query,
+which may match both existing objects and objects which are still pending to
+be added.  This means we can use it to completely clear the playfield of a
+certain type of object at the beginning of the next frame.  For the rest, the
+query and its corresponding remove action are executed at the same moments as
+remove().  Note that this causes counter-intuitive behaviour in one important
+case: if one calls removeObjects() from inside an object during a moveObjects
+or checkCollision action, then add an object during that same action, the
+newly added object will be deleted at the end of the action if it matches the
+removeObjects query.  One can circumvent this problem by, for example, doing
+the removeObjects/new sequence in the doFrame main loop, or setting a timer to
+do the remove/add sequence at the end of the frame.
+
+Game state
+----------
+
+In most games, the game's progress can be considered to go through a number of
+distinct states.  There is a title screen, then the game begins, then there's
+a "level finished" message, a death sequence, or a "game over" message.  JGame
+supports this typical state-based dynamics by defining game states.  A game
+state can be set by means of setGameState().  A game state is represented by a
+String.  In addition to the regular doFrame and paintFrame, the engine will
+also call doFrame<gamestate> and paintFrame<gamestate> methods, in case
+these methods exist.  Here, you can specify state-specific action and
+painting.  In addition, a method start<gamestate> is called once at the
+beginning of the frame, where you can specify state initialisation code.  Game
+states are based on the frame update cycle, hence a game state always lasts an
+entire frame, and state changes only take effect on the next frame.
+
+Timers
+------
+
+JGame also has timers, represented by the JGTimer class.  A JGTimer defines an
+alarm method, which is called when the timer expires.  Timers always tick and
+alarm at the very beginning of a frame, and any objects they remove or add
+will be removed and added before that frame begins.  They may be used to
+specify special global or local events (just make the JGTimer an inner class
+of the desired object to be updated).  Initialising a timer to 0 means it will
+alarm() right after the current frame ends.  This can be used to define
+special actions to be done at the end of the current frame, such as
+initialisation before a game state transition.  JGTimers can be made dependent
+on either a game state or a JGObject (their parent), which means they will
+remove themselves as soon as the state or object expires.
+
+Principles of tile-based background
+-----------------------------------
+
+As in many games, JGame uses a tile-based scheme to manage the (relatively
+stationary) physical environment in which the animated objects move around.
+This environment is also called the background.  Tiles simplify the issues
+involved in defining a background, representing it graphically, and managing
+object-background interaction.  The background is defined as a matrix of
+equal-sized tiles, with tiles being typically square and 10-40 pixels in size.
+An object collides with a tile when its tile bounding box overlaps it.  So,
+an object with a size between 2 pixels and the tile size may overlap between 1
+and 4 tiles at a given moment, depending on its alignment with the tile grid.
+Each tile shows up as a specific graphic (an image), and has a specific
+identity, which can be queried when necessary.  In a game, the background
+typically consists of elements with a specific purpose, such as walls (to bump
+into), floors (to walk over), ladders (to climb onto), bonuses (to pick up),
+doors (to open or close), etc.  With a tile-based background, each of these
+elements is represented by a specific type of tile.  Often, one element
+corresponds to one tile (for example, a door or a bonus).  In other cases, one
+element corresponds to an array of tiles (a floor may be represented by a
+horizontal array of tiles, and a ladder by a vertical one), or to any other
+arrangement (such as block of tiles that represents a wall).  Typically, the
+animated objects have approximately the same size as one tile, so they "fit"
+quite neatly into the environment.  So, a player, sized 1 tile, is precisely
+large enough to move through a 1-tile wide tunnel, or climb up a 1-tile wide
+ladder.  Alternatively, a more fine-grained background consisting of smaller
+tiles may be defined, with an object being two or more tiles in size.  This is
+generally more difficult to handle, but may be preferred for aesthetic or
+playability reasons.
+
+Designing tile-based graphics has special issues.  Typically, tile graphics
+are drawn so that they can be seamlessly juxtaposed horizontally or vertically
+(i.e. they are "tileable") so that they have a natural appearance.  Sometimes,
+multiple graphical variations are used for one tile type for the sake of
+visual variety.  In some cases, larger background objects are formed by
+forming blocks of tiles, such as a 2x2 object made of 4 different tiles, which
+correspond to the corners of the object.  In JGame, tiles may be transparent,
+so that a backdrop image can be made to show through the tiles.  The backdrop
+image has no other purpose than decoration.
+
+Handling object-object and object-background interaction
+--------------------------------------------------------
+
+Handling collisions and objects' other reactions to their environment is often
+the trickiest part of game programming.  The simplest are the cases when an
+object should simply be destroyed or picked up when it collides with an object
+or a tile.  Often though, objects should avoid and steer around tiles or
+objects, bounce off them, move differently when on a specific type of tile,
+etc.  Doing this properly without the object getting stuck or exhibiting
+unnatural or unwanted behaviour is the tricky part.  A classic example is
+having balls bounce around an environment and off each other.  Anyone who has
+tried to program this knows that balls tend to get stuck into walls, into each
+other, may start to oscillate and move erratically through walls, etc.  In the
+case of balls, this usually results from the fact that the balls can't make
+out in what direction to bounce, and they may bounce off one wall right into
+another, or into another approaching ball.  This general problem is found in
+both the oldest and the most modern games, and there doesn't seem to be a
+universal method that's reasonably simple and works in all cases.  Particular
+solutions to particular problems can be devised by analysing the problem,
+simplifying the situations if possible, and using known guidelines.  Modern 3D
+games often use a full-fledged physics engine to solve this problem, though
+even such engines are often application-specific in unexpected ways.  For 2D
+games, a full physics engine is usually too heavyweight: the application
+programmer has to specify more detail and/or give up some control over game
+dynamics.
+
+A basic method for handling object-background interaction is "looking around".
+One looks at the tiles surrounding the object to decide what to do.  This may
+be done prospectively, having the object look around every step, or
+retrospectively, having the object look around only after it bumps into
+something.  In the latter case, one usually takes a step backwards to the
+previous step, when the object still hadn't collided with anything.  You can
+use the getLast... methods for this.
+
+A basic method for simplifying object-tile interaction is tile alignment.
+Here, one ensures that an object is mostly aligned with the tile grid, so that
+it overlaps only one or two tiles at a time.  In its very simplest form, the
+object moves around in steps of a whole tile at a time.  This looks very
+jumpy however.  This kind of primitive "board game" style motion was popular
+with home computers which used character screens to draw graphics.  A more
+appealing "smooth" version of this can be made by having objects move smoothly
+from one tile-aligned position to another.  This technique is very appropriate
+for maze games, such as Pac-man.  In JGame, one can use the is...Aligned
+methods to determine when an object is approaching tile alignment, and
+snapToGrid to ensure that it becomes exactly tile-aligned, and is ready to
+decide which way to move next.  Typically, one wants to snap an object to the
+tile grid if it is closer to tile alignment than its speed.  Note that
+rounding errors may play a role here, as the objects' positions are floating
+point values, and often move at non-integer speeds.  In this respect,
+is...Aligned and snapToGrid have default behaviour that should work well most
+of the time.
+
+Tile alignment can also be used to handle special cases for objects which are
+not normally tile-aligned.  For example, if an object bumps into a wall, one
+can snap it to the tile grid to bump it back to a valid position, and look
+from there what to do.
+
+Examples of solutions to "tricky" interaction can be found in the example
+games. The WaterWorld game is a prime example of handling different kinds of
+object-background interaction.
+
+Scrolling and wrap-around
+-------------------------
+
+The area in which the game action takes place is called the playfield.  By
+default, the playfield is the same size as the game window.  It is also
+possible to make the playfield larger than the game window, by using
+setPFSize.  The part of the playfield that is visible in the game window is
+called the view.  The view can be panned using setViewOffset to reveal any
+part of the playfield, typically it is panned incrementally, only a few pixels
+per frame in any direction, to obtain an effect of continuity, e.g.
+scrolling.  Typically one moves the view along with the player, either keeping
+the player in the middle of the screen, or having the player more on the sides
+to reveal more of what's in front of the player.  Thanks to the tile-based
+system, it is possible to define a background for a playfield that's much
+larger than the screen without taking too much memory.  The engine does not
+need to store the entire background, it draws just the part that's in view.
+For the rest, only the tile values need to be stored.  One tile costs only 8
+bytes of memory.  For 32x32 tiles that's around 1/400 of the size of a 32x32
+pixel screen area.  There's no performance penalty involved in scrolling,
+except that the tiles that become exposed when the view is panned have to be
+drawn.
+
+JGame also supports scrolling multiple background layers at different speeds,
+aka parallax scrolling, when using OpenGL.  This can be achieved by making
+some of the background tiles transparent, or using null tiles, and defining
+one or more background layers by setting background images with setBGImage.
+The topmost background image (layer 0) shows through the transparent or empty
+tiles of the tile background.  If this image also has transparency, then the
+layer 1 background image shows through that image, etc.  Each layer can be
+scrolled independently by setting the image offsets using setBGImgOffset.  By
+default, layer 0 scrolls along with the tile background (corresponding to the
+behaviour found in platforms not supporting parallax scrolling), and layer 1
+and higher have offset (0,0).  
+
+By default, objects happily continue updating while outside of the view.  In
+some cases though, you want objects to wait until they come in view.  For
+example, you might have a large scrolling map (say, 20 screens high or wide),
+on which hundreds of objects are placed, ready to become active when they
+enter the view.  JGObject's suspend feature is meant for this purpose.  An
+object can be made to suspend (i.e. sleep) when it is off view.  By default,
+an object will resume (i.e. wake up) whenever it comes in view.  It is also
+possible to suspend and resume an object at any other time.  A suspended
+object is invisible and no move/hit methods are called, but it can be counted
+in countObjects.  Objects can also be removed automatically when they exit the
+view or the playfield.
+
+Some games use a playfield that "wraps around", that is, when something exits
+on one side of the playfield, it reappears on the other side.  JGame has a
+wraparound feature which enables the playfield to wrap around horizontally or
+vertically.  It can be enabled using setPFWrap.  Wraparound makes sense both
+for scrolling and non-scrolling games.  Implementing wraparound for
+non-scrolling games (such as Asteroids) is quite easy in general, and there's
+no real reason to use the special engine feature.  But this is different for
+scrolling games, for which the tile and object collision logic can be quite
+tricky.  Prime examples are Defender, which wraps horizontally, and Sinistar,
+which wraps in all directions.  The wraparound feature should make
+implementing this quite easy.  With the engine feature, even a non-scrolling
+Asteroids can be easily made to scroll along with the player's ship by simply
+using setViewOffset.
+
+Theoretically, wrap around means that the playfield is treated as infinitely
+long in a particular direction, with the content of the playfield (both tiles
+and objects) repeating periodically.  The view offset can be set to any value,
+and tiles may be read or set to/from any tile coordinate.  Mathematically,
+the tile coordinates are modulo-ed with the playfield size.  Objects are
+treated differently, but should mostly behave intuitively w.r.t. theoretical
+behaviour.  Objects are not modelled as if they are repeated infinitely,
+instead, they are always on one specific coordinate only.  This coordinate is
+wrapped around so as to ensure that the objects is within the range
+-playfieldsize ... +playfieldsize of the middle of the current view.  This
+enables the object coordinates to be compared and collision to be calculated
+as usual in most cases.  In some cases, coordinate (distance) comparisons must
+take into account the wraparound feature, you can use the method getX/YDist
+for this purpose.  If the playfield is the same size as the view, there will
+be a visible "jump" when the object wraps from one side to the other.   This
+is due to the fact that, otherwise, the object would have to be modelled as
+being in two positions at once.  This can be remedied (as it almost always is
+in actual games; for a nice counterexample see the C64 game Dino Eggs) by
+making the playfield just a little bit larger than the view, so that the
+objects only wrap when off the view.  The precise location of the "middle" of
+the view can also be set by means of a shift parameter.  Basically, shift
+should be 0 if you want to wrap objects that have their coordinates in the
+center of their sprites, and -spritelength/2 if you want to wrap objects that
+have their coordinates at the top left of their sprites (as is the case for
+image-based sprites).
+
+Sound
+-----
+
+JGame has a simple sound system based on applet AudioClips.  You can play Wav
+(sample) and Midi (music) files, and possibly, if you don't mind being
+platform-specific, other formats.  A clip is identified by a clipid, which is
+associated with an appropriate file using defineAudioClip.  Simply playing a
+clip (playAudio) will play the sample or tune regardless of how much sound is
+already playing.  In some cases you want to stop a previous clip when you
+start a new one.  For example, you only want to play one tune at a time!  This
+can be achieved by using channels.  You can play an audio clip on a specific
+channel (specified by an arbitrary name of your choice), which means that any
+clip already playing on that channel will be stopped.  It is also possible to
+stop a channel (stopAudio) so that any clip still playing will be stopped.
+Limiting the playing of a certain clip to only one sound at a time may also be
+desirable for clips other than music.  For example, I found it's unnatural
+when you hear two pairs of scissors snip simultaneously in Munchies while you
+only have one, so I limited the snip sound to a channel "scissors".
+
+It is also possible to loop a clip so it continues playing until you stop it.
+Naturally, this is only possible if you play it on a channel.  If you play a
+looped sound while the same looped sound is already playing, it will not be
+restarted but will simply continue.  This is specially designed so that you
+can call playAudio or stopAudio every frame depending on resp. an "on" or
+"off" state of your game, without having to know whether you already started
+or stopped looping.
+
+There is a global switch for enabling and disabling audio.  This is useful if
+you want the user to enable/disable game sound.  The StdGame class has a
+settings option for enabling and disabling audio.  When audio is disabled, the
+audio administration is handled as usual, except that actual audio calls are
+skipped.  If you re-enable it the system does its best to restart the audio as
+it would have sounded as if you never disabled it.  In practice, only looping
+clips are restarted.  For future versions, we want to have an enable/disable
+for music and other sounds separately.  We wish to reserve the channel "music"
+for that purpose.
+
+Java has a serious sound latency problem, which is gradually being resolved
+though.  I experienced latencies ranging from 0.05 to 0.7 seconds on different
+platforms.  I thought of providing a getAudioLatency function to query the
+latency so that you can do something creative with it (such as delay an
+animation in some way until a sound starts playing) but as yet I find it too
+hard to figure out which platform has what latency.  I noticed most Windows
+javas have a latency of around 0.1-0.15 second, and in java 1.5 the latency is
+apparently less.  On Linux the new Sun-java also has pretty low latency, but
+there's a bug (on my machine at least) that freezes the thread when trying to
+stop a looping clip.  Blackdown Java works well, but has a latency around
+0.3s.
+
+The StdGame framework
+---------------------
+
+JGame now comes with a StdGame engine that pre-defines some typical game
+functionality.  StdGame is a subclass of JGEngine, and basically defines a
+standard state machine for games, comprising of states such as Title,
+StartLevel, InGame, LifeLost, and GameOver, along with some handy timers and
+special events on certain transitions.  Furthermore it defines some basic
+variables, such as lives, level, game keys, and game fonts.  The game has
+default behaviour for the game states and events that serve as a "raw"
+framework for a game, which means you can have a working game prototype in no
+time at all, and define a nicer look and feel for your game later on.  The
+SpaceRun and SpaceRunII examples demonstrate how to use and configure the
+game framework.  StdGame is found in the jgame package.
+
+StdGame also provides a basic configuration screen.  When you press enter (by
+default) on the title screen, you get a configuration window where you can
+configure keys and disable sound.  The MIDP version now also has a very simple
+"enable sound" dialog at the beginning.  Disabling sound is an essential
+option for a MIDP application with sound.  
+
+Also present are several standard game objects, all starting with Std...,
+which are found in the examples package, along with the example games.  These
+objects do some of the typical "tricky" interaction, and can be subclassed or
+modified to fit in your own games.  The example games should demonstrate the
+usage of StdGame and the standard objects well.
+
+Adapting the game speed
+-----------------------
+
+The effective game speed can be defined as the increments at which things are
+updated at each frame (for example, the number of pixels that an object moves
+each frame), times the frame rate.  Your game may run at a fixed frame rate,
+variable frame rate, or at one frame rate for one platform, and at another
+for another platform.  If frame rate is decreased, you can maintain the same
+game speed by increasing all appropriate update increments.  You may want to
+adapt the actual game speed too, for example to gradually increase the
+difficulty level of the game.  
+
+Adapting the update increment in a consistent and predictable way is quite
+difficult in some cases.  In practice it usually involves two basic things:
+namely, changing the per-frame timer increments for any timers you have, and
+changing the per-frame object move speeds.  One has to ensure that the logic
+of both objects and timers is appropriate for working at different speeds,
+which is sometimes difficult.  In particular collision and tile alignment may
+be a problem.  In general, you have to make decisions about the range of
+speeds you want to support.  While JGame provides no general solution for this
+problem, there is a game speed setting that helps relieve some of the more
+boring work.  It is handled through setGameSpeed and getGameSpeed, and is set
+to an appropriate value automatically in video synchronous mode.  It
+influences the built-in update increments, which are the following: it is used
+as JGTimer tick increment, animation speed multiplier, JGObject expiry
+increment, multiplier for object x/yspeed, and also determines the default
+margins of is...Aligned and snapToGrid to be compatible with the multiplied
+x/yspeed.  The StdGame timers also increment using the gamespeed setting.  In
+a basic game in which objects move only by means of x/yspeed, using
+setGameSpeed may be sufficient for adapting the entire game in one go.
+
+
+General comparison of platforms
+-------------------------------
+
+Not all platforms implement all features.  Some features are not yet
+implemented, others are not available on some platforms.  Note that the flash
+platform, which is released as a separate package but will be merged
+eventually, is included in the table.
+
+Graphics:  alpha/scale/rot   pre-rotated img    BG parallax layers   VideoSync
+JRE             No                  Yes                No               No
+OpenGL          Yes                 Yes                Yes              Yes
+MIDP            No                  Yes                No               No
+Android         Yes                 No                 No               No
+Flash           Yes                 No                 Yes              No
+
+Sound.
+
+JRE        Multichannel (with some latency). Wav, midi
+MIDP       Single channel (with some latency). 8 Khz Wav, midi
+Android    Multichannel low-latency. Wav only.
+Flash      Multichannel (with some latency). MP3 (Wav not supported!)
+
+Persistent Storage.
+
+JRE        Yes, applet needs write access to file system
+MIDP       Yes
+Android    Yes
+Flash      Yes
+
+On-screen Debugging.
+
+JRE        Yes
+OpenGL     Yes
+MIDP       No
+Android    No
+Flash      No
+
+Game states.
+
+JRE        Arbitrary game state names
+MIDP       Fixed set of game state names
+Android    Fixed set of game state names (as yet)
+Flash      Fixed set of game state names
+
+Input:     Keyboard   Mouse/Touchscreen  Accelerometer
+JRE         Yes        Yes                No
+MIDP        Yes        Yes                No
+Android     Yes        Yes                Yes
+Flash       Yes        Yes                Yes
+
+
+OpenGL versus Android versus vanilla JRE (AWT) graphics
+-------------------------------------------------------
+
+You can use OpenGL instead of the regular AWT graphics engine to access
+enhanced graphical features.  Most of the OpenGL enhanced graphics features
+are also available on Android.  The system design is such that an application
+using OpenGL specific features will still work under AWT, only it will look
+less nice, and may even look significantly different in some cases.  OpenGL
+rendering is _not_ for providing a speed boost (as the AWT backend is already
+accelerated; the OpenGL backend is in fact slower), but rather, a quality
+boost.  There are some extended versions of regular drawing methods which
+provide added functionality when OpenGL is enabled, in particular image and
+shaded polygon drawing.  These methods will use a lower-quality fallback when
+OpenGL is not available, and for example, produce a plain polygon rather than
+a shaded one.  Additionally, OpenGL uses the alpha component of JGColor,
+enabling translucency/alpha blending for all draw methods.  Alpha is ignored
+when using the AWT backend.  A second advantage of OpenGL rendering is double
+buffered and screen-synchronous updates.  Even in fixed frame rate mode,
+OpenGL will look better than AWT, because double buffering will prevent the
+tearing effect (this happens when the game's screen update crosses the
+screen's physical update), which is especially disturbing for scrolling games.
+OpenGL also enables the video synchronised mode, which achieves the
+theoretically maximum animation smoothness.  Android does not (yet) support
+video synced update, but due to Android's double buffering system, tearing is
+avoided. See the table below:
+
+Backend    VideoSyncedUpdate   Update quality
+-------------------------------------------------------------------------
+AWT/MIDP         off           tearing, jerky animation
+AWT/MIDP         on            NOT AVAILABLE, setting it is ignored
+ OpenGL          off           no tearing, jerky animation
+ OpenGL          on            no tearing, smooth animation 
+Android          off           no tearing, jerky animation
+Android          on            NOT AVAILABLE, setting it is ignored
+
+Designing for MIDP
+------------------
+
+J2ME (and other mobile platforms) suffer from a certain level of device and
+implementation diversity, which leads to software development problems for the
+application programmer.  Problems include having to test on multiple devices,
+or worse, maintaining a separate version for each class of devices.  This
+problem is also known as "device fragmentation".
+
+Reasons for not having one version often include technical demands that are
+incompatible with the J2ME platform (such as using softkeys, for which no
+platform-independent keycodes have been defined, or wanting your MIDI file to
+sound exactly the same on all devices), and publisher/distributer demands
+(such as a phone vendor requiring any content providers to use the
+phone-specific API, or the right icon size, or softkeys).  This typically
+includes maintaining multiple build scripts, or using special software that
+rewrites the code for each different version that would, in programming
+languages other than Java, be performed using a set of macros.   
+
+We will not address these issues here.  Instead, JGame tries to solve most of
+the fragmentation problems using resolution independence and a "greatest
+common denominator" approach.  The basic goal is to have just one version of
+the software that works well on a great range of devices.  The basic premise
+is that, to develop good 2D games, you don't really need any additional APIs
+or special phone-specific features.  Having just one version is also
+advantageous to the user, who otherwise has to find out how to get the right
+version.  This may involve selecting phone type and finding that his/her phone
+is not in the list even though the application may work well (it happens to me
+all the time).  Actually there's a lot of mobile software out there which
+already makes do with just one version.  My experience is that the available
+input and output devices are actually the worst problem.  See below for some
+tips on how to make your game work on most devices.
+
+The current mobile version of JGame inherits almost all features of the
+original, including scrolling and resolution independence.  Only the debug
+facilities are not found in the mobile version.  Usually though, games will
+need to be adapted to fit the slow processor (typically 10 times slower),
+small keyboard (JGame chose as "greatest common denominator": 0-9, #, *,
+cursors, and fire), and small screen (3/4 of existing phones range from
+128x128 to 240x320).  The default key settings in StdGame are adapted to
+mobiles, but for fast action games, one typically needs to reduce the
+frequency of keypresses, since the keyboard is typically small and cumbersome.
+Some phones do not even support multiple simultaneous keypresses.  Even while
+most newer phones do, you may expect some quirks in this respect.  For
+example, the SE K320i has a joystick used for cursor movement, which is
+pressed inwards for fire, and due to this design, it is not possible to move
+the joystick in a direction and press fire simultaneously.  Also, the joystick
+is less responsive to diagonals.  So, make sure that your game does not
+require multiple keys to be pressed to be playable!  
+
+The range of screen sizes on mobiles actually varies less than that of PCs.
+Mobiles are mostly 120x160, 176x208, 240x320, or slight variations of these.
+One major screen size problem is accounting for both horizontal, square, and
+vertical screens.  You can use a square viewport, and use
+setScalingPreferences to control how it should be stretched.  The screens may
+have high latency, so that at frame rates above about 10-20fps, the action may
+become very blurry.  Setting the frame rate to 10-20fps solves that problem,
+and also reduces processor consumption.  With the recent introduction of touch
+screens, there are now many phones which do not have a keyboard at all, and
+the game will have to be controlled by mouse input to be compatible with this
+class of phones.  While a touch screen appears to the programmer as a mouse,
+it is different and more limited in terms of usability.  There is also a big
+difference between operating touch screens with a finger and with a stylus.
+You'll really need to test your game on a real touch screen if you want to
+know if it works usability-wise.
+
+In general, I found that a game can be made to run nicely on mobile as well as
+PC by doing at least two things: reducing the frame rate, and adapting the
+game speed.   When you reduce frame rate, you will have to increase the game
+object speeds and timer increments by a proportional amount to have the same
+effective game speed.  JGame now has a built in gamespeed variable which
+automatically adapts some basic behaviour, in particular xspeed/yspeed and
+timer increments (see section "adapting the game speed"). Since games are more
+difficult to control on the mobile, you may also want to adapt the effective
+game speed to run a little slower than the PC version.  For example, I might
+have 45 frames/second on the PC, and 15 frames/second on the mobile, while the
+PC runs at gamespeed 1.0 and the mobile at 2.0.  Then, the effective mobile
+game speed is 15/45 * 2.0 = 2/3 as fast as the PC game.
+
+In some cases, you want to reduce the number of sprites or tiles visible in
+the view.  It's quite easy to reduce the view size while keeping the original
+playfield size, you just need to scroll more.  I myself prefer using
+relatively many small objects rather than few large objects.  Many commercial
+games use 16x16 sprites, while I think 8x8 or even smaller is more suitable.
+Only eight 16x16 sprites fit on a 128 pixels wide screen, which is so
+cramped that gameplay may suffer.
+
+Here are some tips for optimising your game.  In some cases, it makes sense to
+make objects suspend when they go out of view (using suspend_off_view).
+Objects use only little CPU when suspended.  You can also decide to use less
+particles in explosions, etc. in the MIDP version of your game.  Some general
+optimisation tips are: avoid expensive operations, in particular object
+creation, string manipulation, and even calling methods.  It's better to just
+create a JGPoint once in a JGObject constructor, and then overwrite its
+contents each time the move() method requires some coordinate manipulation,
+rather than create a new JGPoint inside the move() method.  If you need to
+traverse a list of items, use a plain array instead of a Vector with an
+Enumerator.  String construction is expensive because it involves multiple
+object creations, but string comparison is also expensive.  Method calling is
+also relatively expensive.  In particular calling get/set methods is
+significantly slower than just reading a variable.  For this reason, JGObject
+provides a set of (static) variables representing the game and playfield
+settings, such as tilewidth/height, pfwidth/height, and gamespeed.  WTK also
+provides a profiler which gives very detailed CPU usage information. 
+
+Saving memory is another significant issue.  Jars should be smaller than about
+200-300Kb (You can expect a MIDP2.0 phone to support at least 200Kb Jars) and
+it is preferable to make them less than 100K.  JGame's basic Jar footprint is
+about 60-65Kb, but this can be reduced if you use a bytecode optimiser such as
+proguard (see README for how to use it).  It removes unused methods and
+reduces the symbol size, so the JGame footprint will shrink to something like
+35K for your typical game.  Beside Jar size, memory usage should also be kept
+to a minimum.  WTK provides a nice memory profiler where you can monitor
+memory usage and object counts.
+
+MIDP can be rather a nuisance w.r.t. supported file formats.  There is no
+clear minimum guarantee.  The documentation only mentions 8Khz 8-bit PCM Wav
+and PNG as minimum standards.  That means you'll have to experiment to find a
+suitable minimum.  For my test devices, I found the following:
+
+Sagem My401C:
+WAV: 8000Hz 16-bit PCM
+MIDI: supported
+PNG,GIF,JPG: No large images (such as 240x320).  If image is too large, 
+    sometimes produces I/O error, sometimes hangs (the Sagem software is
+    rather buggy)
+
+Sony Ericsson K320i:
+WAV: 8000Hz or 11025Hz (11050Hz is already too high) 16-bit PCM
+MIDI: supported
+PNG,GIF,JPG: supported up to at least 240x320.
+
+Vairy Touch II:
+WAV: Tested up to 44100Hz 16-bit PCM
+MIDI: supported
+PNG,JPG: supported
+GIF: NOT supported
+
+According to these results, it's best to keep WAVs to 8000Hz, and do not use
+GIFs. You'll probably want JPGs because they can help reduce Jar size.  It
+appears that phone models other than the Sagem also have problems with image
+sizes much bigger than the screen size, so keep image sizes as small as
+possible.  If possible, do not make them larger than the screen size of your
+target devices.
+
+Designing for Android
+---------------------
+
+Android devices are more powerful than MIDP devices, and most of them have
+GPUs, which make OpenGL style effects possible.  Yet some of the issues found
+in MIDP apply here to.  Since applications all share the same limited internal
+SD storage, and internet download speeds are sometimes slow, it is a good idea
+to keep your app as small as possible.  Furthermore, a minority of Android
+devices have limited memory, which means that memory will easily run out when
+loading too many images and sounds.  Most Android devices do not have a
+keyboard or even a numeric keypad, so you'll have to rely on touch screen and
+accelerometer (I believe almost all of them have an accurate accelerometer).
+Graphical performance varies per manufacturer.  Expect basic graphic rendering
+to be fast, but scaled, rotated, and blended images to be slow on some
+machines.  Performance on screens with more pixels is also significantly
+slower, so if you develop on a 320x240 device, be sure to check performance on
+a 640x400 or 800x480 device.
+
+
+Performance issues and troubleshooting
+--------------------------------------
+
+What machine do I need to run JGame?
+
+While JGame should run very well on modern machines, there are a number of
+things to consider to get optimal results.  My overall experience is that
+proper graphics acceleration makes the biggest difference.  When it is
+available, the games run several times faster.  On a 1Ghz machine with
+acceleration, JGame should only take about 10% CPU in fullscreen, or something
+like 20% when using JOGL.  It can still be run on a 200Mhz machine when
+graphics acceleration is available.  It will also run very smoothly over a
+network X11 connection (something which OpenGL-based applications cannot do!).
+Screen size matters a lot, so if your game runs too slow, try a lower
+resolution.  The worst that can happen is that your video memory is full, at
+which point the game slows down dramatically.  This may happen when you have
+less than 32 Mb video memory.  There also seem to be window size limits beyond
+which the drawing operations slow down, possibly depending on buffer or
+texture size limits of graphics cards.  
+
+Why is my applet running slower than my application/webstart?
+
+There are two problems with JGame applets.  The current version of JGame
+cannot use VolatileImages in Windows applets, so only applications will
+benefit from full graphics acceleration.  Typically it will be quite fast
+enough, though.  I will fix that in a future version.  The second problem is
+that, for some unknown reason, JOGL applets (those loaded with the
+JNLPAppletLauncher) run significantly slower than JOGL applications.
+
+Why do I get a delay in the keyboard/mouse input?
+
+On slower machines and in the WTK emulator, there may be delays in the input:
+keyboard and mouse actions may be delayed by up to a second.  This typically
+happens when the CPU is seriously hogged, and appears to be caused by the
+input thread not getting enough time for handling input events.  The problem
+can usually be solved by lowering the resolution or frame rate, especially
+frame rate is a significant factor.  I found it may also be solved by using
+another threading implementation in some cases.  Generally, just ensure that
+your target system has enough CPU cycles left to handle the input properly.
+
+How do I use large images?
+
+Large images are generally slow to load (especially from the internet) and
+scale, and take up a lot of memory.  So, when you want to have large
+background images for instance, you should be aware that it's not a good idea
+to load them all into memory if you're only going to display only one per
+level.  Moreover, images may occupy video memory, and if the video memory is
+full, the performance tends to drop dramatically.  For machines with 16 or 32
+megabytes of video memory, this may be a significant issue when you run JGame
+fullscreen.  Then it's better to load an image only when it's needed, and
+discard it afterwards.  This can be done by re-using the same image id for the
+different background images.  One just loads each new image with defineImage
+just before the level begins.  The old one is removed from memory.  This not
+only saves memory but also chunks the waiting time into smaller, more user
+friendly pieces.
+
+Why is drawing my background / scrolling / text rendering so slow?
+
+Drawing transparent tiles in combination with a background image is rather
+slow on some slower machines, in the current implementation.  This will give a
+performance hit when setting a lot of tiles each frame.  Once the tiles are
+set though, there is no performance penalty compared to any other background.
+Scrolling will also involve a greater performance penalty, as the system needs
+to draw newly exposed tiles when scrolling.  I also found that on some
+machines, OpenGL scrolling is very slow.  This is apparently because of
+inefficiencies in the TextureRenderer implementation.  I found the same thing
+with drawing text, which is not so surprising, as TextRenderer also uses
+TextureRenderer.  In some MIDP implementations, drawing text is also slow.
+If possible, avoid drawing lots of text using drawString; put it in an image
+instead.   
+
+When I enable sound, the game slows down and I get hiccups. What's going on?
+
+Sound may give a performance hit on all platforms, so be a bit careful if you
+care about performance.  I found that midi is pretty fast, but triggering a
+lot of samples at a time may hog slower machines some.  In Linux/OpenJDK,
+sound causes serious hiccups in the animation (on my machine).  Use the Sun
+(Oracle) JDK if possible.
+
+Why does the animation look jerky?
+
+In some cases animation may be less than smooth.  This happens when the frame
+rate is slow and the screen updates are not processed at equal time intervals,
+or the game's screen update crosses the screen's physical update (tearing).
+This is especially visible when scrolling quickly, and typically much less
+when scrolling slowly or not at all.  Using OpenGL will make animations look
+less jerky, as double buffering is enabled on most platforms, and tearing
+should disappear altogether.  
+
+On some slow machines (typically 300 Mhz or less) you may also see hiccups
+about every one or two seconds.  These are caused by garbage collections.
+Since JGame 3.1, the number of object creations has been greatly reduced, but
+the hiccups should not occur on faster machines anyway.  I found that the
+mobiles I tested do not suffer from garbage collection hiccups.
+
+I enabled video synced mode, and animation is still jerky.  What's going on?
+
+With the OpenGL video synced update mode, animations should be completely
+smooth, if your machine is fast enough.  However, on some platforms, JOGL
+video sync does not work, and JOGL will produce a high, but not video synced
+frame rate.  I'm not sure why this is, it could be a bug in JOGL, or lack of
+support in some OpenGL drivers.  It may be remedied by increasing the frame
+rate in fixed frame rate mode.  
+
+Why does the animation flicker?
+
+In some cases, you may see flicker that is reminiscent of a badly implemented
+screen update algorithm.  This is actually caused by your screen being
+interlaced.  I found that many TFT screens are interlaced, that is, they
+advertise themselves as for example 60 Hz screens, but are 30 Hz 2x interlaced
+in reality.  Flicker will be most visible when you have moving objects with
+thin lines or stippled patterns, or when scrolling.  Avoid such patterns if
+this is a problem.
+

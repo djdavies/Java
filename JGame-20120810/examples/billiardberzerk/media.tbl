@@ -1,0 +1,106 @@
+splash_image	-	0	bblogo1.png	-
+
+black	#	1	empty-black16.png	-
+
+star_map	spinstar_32.png		0	0	32	32	0	0
+
+star1	-	0	star_map	0	-
+star2	-	0	star_map	1	-
+star3	-	0	star_map	2	-
+star4	-	0	star_map	3	-
+star5	-	0	star_map	4	-
+star6	-	0	star_map	5	-
+star7	-	0	star_map	6	-
+star8	-	0	star_map	7	-
+star9	-	0	star_map	8	-
+star10	-	0	star_map	9	-
+star11	-	0	star_map	10	-
+
+star	star1;star2;star3;star4;star5;star6;star7;star8;star9;star10;star11	0.5
+
+barrel	-	0	barrel40.png	-
+
+fire_map	Fire104-sheet48x48.png	0	0	48	48	0	0
+
+fire1	-	0	fire_map	0	-
+fire2	-	0	fire_map	1	-
+fire3	-	0	fire_map	2	-
+fire4	-	0	fire_map	3	-
+fire5	-	0	fire_map	4	-
+fire6	-	0	fire_map	5	-
+fire7	-	0	fire_map	6	-
+
+fire	fire1;fire2;fire3;fire4;fire5;fire6;fire7	0.5
+
+bg0		-	0	felt.jpg	-
+bg1		-	0	specked_marble_128_tile.jpg	-
+bg2		-	0	balls_cc_by_webtreats_128.jpg	-
+bg3		-	0	marble_speck_d_128.jpg	-
+bg4		-	0	tan_webbing_d_128.jpg	-
+bg5		-	0	tiles_cc_by_webtreats_d_128.jpg	-
+bg6		-	0	wood_cc_by_webtreats_128.jpg	-
+
+
+ballhit		billiard1_cc_by_juskiddink_8k.wav
+explo		fireexplo8k.wav
+polehit		billiard2_cc_bunyi_1_8k.wav
+woodhit		woodknock1_cc_mwmarsh_8k.wav
+bonus		slotwin_cc_milton_8k.wav
+
+ball1		-	0	bullet_ball_blue44.png	-
+ball2		-	0	bullet_ball_red44.png	-
+
+crate	-	0	crate80.jpg	-
+
+ballshadow	-	0	ballshadow-44.png	-
+alienshadow	-	0	alienshadow.png	-
+
+alien0_map		db36.png	0	0	36	36	0	0
+alien0_0	-	0	alien0_map	0	-
+alien0_1	-	0	alien0_map	1	-
+alien0_2	-	0	alien0_map	2	-
+alien0	alien0_0;alien0_1;alien0_0;alien0_2	0.3333
+
+alien1_map		dd36.png	0	0	36	36	0	0
+alien1_0	-	0	alien1_map	0	-
+alien1_1	-	0	alien1_map	1	-
+alien1_2	-	0	alien1_map	2	-
+alien1	alien1_0;alien1_1;alien1_0;alien1_2	0.3333
+
+alien2_map		dg36.png	0	0	36	36	0	0
+alien2_0	-	0	alien2_map	0	-
+alien2_1	-	0	alien2_map	1	-
+alien2_2	-	0	alien2_map	2	-
+alien2	alien2_0;alien2_1;alien2_0;alien2_2	0.3333
+
+alien3_map		dj36.png	0	0	36	36	0	0
+alien3_0	-	0	alien3_map	0	-
+alien3_1	-	0	alien3_map	1	-
+alien3_2	-	0	alien3_map	2	-
+alien3	alien3_0;alien3_1;alien3_0;alien3_2	0.3333
+
+alien4_map		ea36.png	0	0	36	36	0	0
+alien4_0	-	0	alien4_map	0	-
+alien4_1	-	0	alien4_map	1	-
+alien4_2	-	0	alien4_map	2	-
+alien4	alien4_0;alien4_1;alien4_0;alien4_2	0.3333
+
+alien5_map		eb36.png	0	0	36	36	0	0
+alien5_0	-	0	alien5_map	0	-
+alien5_1	-	0	alien5_map	1	-
+alien5_2	-	0	alien5_map	2	-
+alien5	alien5_0;alien5_1;alien5_0;alien5_2	0.3333
+
+alien6_map		ee36.png	0	0	36	36	0	0
+alien6_0	-	0	alien6_map	0	-
+alien6_1	-	0	alien6_map	1	-
+alien6_2	-	0	alien6_map	2	-
+alien6	alien6_0;alien6_1;alien6_0;alien6_2	0.3333
+
+alien7_map		ei36.png	0	0	36	36	0	0
+alien7_0	-	0	alien7_map	0	-
+alien7_1	-	0	alien7_map	1	-
+alien7_2	-	0	alien7_map	2	-
+alien7	alien7_0;alien7_1;alien7_0;alien7_2	0.3333
+
+

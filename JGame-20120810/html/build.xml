@@ -1,0 +1,135 @@
+<project name="buildjnlp" default="genjnlps">
+	<description>
+		Generates JNLP for Jogl applications.
+		Usage: ant   (will compile JNLPs for example games)
+
+		Can also be used to generate a single JNLP.
+		Usage: ant genjogljnlp
+				-Dcodebase=base_url_of_jnlp_and_jar
+				-Djnlpfile=jnlp_filename       (without ".jnlp" extension)
+				-Djarfile=relative_path_to_jar_file
+				-Dmainclass=fully_qualified_mainclass
+				-Dtitle=titlestring
+				-Dvendor=vendorstring
+				-Dhomepage=homepage_url
+				-Ddescription=descriptionstring
+				-Dwidth=window_width        (0 is full-screen)
+				-Dheight=window_height      (0 is full-screen)
+	</description>
+
+	<target name="clean">
+		<delete>
+			<fileset dir="." includes="webwars-jogl*.jnlp" />
+			<fileset dir="." includes="dingbats-jogl*.jnlp" />
+		</delete>
+	</target>
+
+	<target name="genjnlps">
+		<antcall target="genjogljnlp-jgame">
+			<param name="jnlpfile" value="webwars-jogl-640x480"/>
+			<param name="jarfile" value="WebWarsJogl"/>
+			<param name="mainclass" value="examples.webwars.WebWars"/>
+			<param name="title" value="Web Wars"/>
+			<param name="width" value="640"/>
+			<param name="height" value="480"/>
+		</antcall>
+		<antcall target="genjogljnlp-jgame">
+			<param name="jnlpfile" value="webwars-jogl-800x600"/>
+			<param name="jarfile" value="WebWarsJogl"/>
+			<param name="mainclass" value="examples.webwars.WebWars"/>
+			<param name="title" value="Web Wars"/>
+			<param name="width" value="800"/>
+			<param name="height" value="600"/>
+		</antcall>
+		<antcall target="genjogljnlp-jgame">
+			<param name="jnlpfile" value="webwars-jogl-1024x768"/>
+			<param name="jarfile" value="WebWarsJogl"/>
+			<param name="mainclass" value="examples.webwars.WebWars"/>
+			<param name="title" value="Web Wars"/>
+			<param name="width" value="1024"/>
+			<param name="height" value="768"/>
+		</antcall>
+		<antcall target="genjogljnlp-jgame">
+			<param name="jnlpfile" value="webwars-jogl"/>
+			<param name="jarfile" value="WebWarsJogl"/>
+			<param name="mainclass" value="examples.webwars.WebWars"/>
+			<param name="title" value="Web Wars"/>
+			<param name="width" value="0"/>
+			<param name="height" value="0"/>
+		</antcall>
+
+		<antcall target="genjogljnlp-jgame">
+			<param name="jnlpfile" value="dingbats-jogl-640x480"/>
+			<param name="jarfile" value="DingbatsJogl"/>
+			<param name="mainclass" value="examples.dingbats.Dingbats"/>
+			<param name="title" value="Dingbat Attack"/>
+			<param name="width" value="640"/>
+			<param name="height" value="480"/>
+		</antcall>
+		<antcall target="genjogljnlp-jgame">
+			<param name="jnlpfile" value="dingbats-jogl-800x600"/>
+			<param name="jarfile" value="DingbatsJogl"/>
+			<param name="mainclass" value="examples.dingbats.Dingbats"/>
+			<param name="title" value="Dingbat Attack"/>
+			<param name="width" value="800"/>
+			<param name="height" value="600"/>
+		</antcall>
+		<antcall target="genjogljnlp-jgame">
+			<param name="jnlpfile" value="dingbats-jogl-1024x768"/>
+			<param name="jarfile" value="DingbatsJogl"/>
+			<param name="mainclass" value="examples.dingbats.Dingbats"/>
+			<param name="title" value="Dingbat Attack"/>
+			<param name="width" value="1024"/>
+			<param name="height" value="768"/>
+		</antcall>
+		<antcall target="genjogljnlp-jgame">
+			<param name="jnlpfile" value="dingbats-jogl"/>
+			<param name="jarfile" value="DingbatsJogl"/>
+			<param name="mainclass" value="examples.dingbats.Dingbats"/>
+			<param name="title" value="Dingbat Attack"/>
+			<param name="width" value="0"/>
+			<param name="height" value="0"/>
+		</antcall>
+	</target>
+
+	<target name="genjogljnlp-jgame">
+		<antcall target="genjogljnlp">
+			<param name="codebase"
+				value="http://www.13thmonkey.org/~boris/jgame/JGame/html"/>
+			<param name="vendor" value="Boris van Schooten"/>
+			<param name="homepage"
+				value="http://www.13thmonkey.org/~boris/jgame/"/>
+			<param name="description" value="A JGame example game"/>
+			<param name="jnlpfile" value="${jnlpfile}"/>
+			<param name="jarfile" value="../jars/${jarfile}.jar"/>
+			<param name="mainclass" value="${mainclass}"/>
+			<param name="title" value="${title}"/>
+			<param name="width" value="${width}"/>
+			<param name="height" value="${height}"/>
+		</antcall>
+	</target>
+
+	<target name="genjogljnlp">
+		<copy file="generic-jogl.jnlp" tofile="${jnlpfile}.jnlp" />
+		<replace file="${jnlpfile}.jnlp"
+			token="CODEBASE" value="${codebase}" />
+		<replace file="${jnlpfile}.jnlp"
+			token="JNLPFILE" value="${jnlpfile}.jnlp" />
+		<replace file="${jnlpfile}.jnlp"
+			token="TITLE" value="${title}" />
+		<replace file="${jnlpfile}.jnlp"
+			token="VENDOR" value="${vendor}" />
+		<replace file="${jnlpfile}.jnlp"
+			token="HOMEPAGE" value="${homepage}" />
+		<replace file="${jnlpfile}.jnlp"
+			token="DESCRIPTION" value="${description}" />
+		<replace file="${jnlpfile}.jnlp"
+			token="JARFILE" value="${jarfile}" />
+		<replace file="${jnlpfile}.jnlp"
+			token="MAINCLASS" value="${mainclass}" />
+		<replace file="${jnlpfile}.jnlp"
+			token="WIDTH" value="${width}" />
+		<replace file="${jnlpfile}.jnlp"
+			token="HEIGHT" value="${height}" />
+	</target>
+</project>

@@ -1,0 +1,13 @@
+A Gauntlet clone with generated levels.  Pick up all the gold in each level.
+<br>
+Keys can be used to open doors (the brown wall segments are doors).  
+<br>
+Move around using the cursor keys.  Use W,S,A,D to shoot.
+<br>
+Use the Z key plus a direction to open a door.
+<br>
+This game's levels should still be made progressively harder.
+<br>
+(as the difficulty level now randomly ranges from "pretty challenging" to "very
+difficult").
+

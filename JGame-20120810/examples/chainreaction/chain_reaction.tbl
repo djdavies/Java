@@ -1,0 +1,21 @@
+font_map			font293-tr.gif				0	0	32	20	0	0
+paratrooper_map		parachutenew2-tr32.gif			0	0	32	32	0	0
+
+sky				p	0	sunsetskybg.gif	-
+sky_sm			p	0	sunsetskybg-sm.gif	-
+
+plane_l			p	0	plane1.gif				x	0	0	32	32
+plane_r			p	0	plane1.gif				-	0	0	32	32
+paratrooper_l1	p	0	paratrooper_map	0		-
+paratrooper_l2	p	0	paratrooper_map	1		-
+paratrooper_l3	p	0	paratrooper_map	2		-
+paratrooper_r1	p	0	paratrooper_map	0		x
+paratrooper_r2	p	0	paratrooper_map	1		x
+paratrooper_r3	p	0	paratrooper_map	2		x
+trooper_land1	p	0	trooper_landed.gif		-	0	0	32	32
+trooper_land2	p	0	trooper_landed2.gif		-	0	0	32	32
+
+paratrooper_l		paratrooper_l1;paratrooper_l2;paratrooper_l3	0.1	true
+paratrooper_r		paratrooper_r1;paratrooper_r2;paratrooper_r3	0.1	true
+
+trooper_land		trooper_land1;trooper_land2		0.15

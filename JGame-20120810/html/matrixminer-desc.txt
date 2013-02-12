@@ -1,0 +1,5 @@
+A game inspired by the classic "Crossfire".
+<BR>
+Instructions: extract the valuables from the walls by passing along them,
+<br>
+then pick them up.  Use cursors to move, and W,S,A,D to fire.  

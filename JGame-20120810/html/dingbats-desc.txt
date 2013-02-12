@@ -1,0 +1,8 @@
+Click to lay markers to blow up the dingbats.
+<br>
+Earn clicks by blowing up multiple dingbats in one go.
+<br>
+Watch out for the alarm timer, if it goes off
+the dingbats will come after you!
+<P>
+This is an OpenGL game that will only look good with the OpenGL backend.

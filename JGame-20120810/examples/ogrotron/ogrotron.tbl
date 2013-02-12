@@ -1,0 +1,79 @@
+splash_image	-	0	tomatogames-mobile-splash-2-dither.png	-
+
+crosshairs_map	crosshairs.png	0	0	32	32	0	0
+
+crosshairs0	-	0	crosshairs_map	0	-
+crosshairs1	-	0	crosshairs_map	1	-
+crosshairs2	-	0	crosshairs_map	2	-
+
+crosshairs	crosshairs1;crosshairs2;crosshairs3	0.333
+
+introscreen	-	0	ogrotron-intro.png	-
+
+bg0		-	0	zigzag5b-dark-sm.jpg		-
+bg1		-	0	zigzag7b-crop-dark-sm.jpg		-
+bg2		-	0	zigzag6b-dark-sm.jpg		-
+
+sprites_map		ogrosprites16-2.png				0	0	16	16	0	0
+
+player			-	0	sprites_map	2	-
+
+player_l1		-	0	sprites_map	3	-
+player_l2		-	0	sprites_map	4	-
+player_l	player_l1;player_l2		0.3
+
+player_r1		-	0	sprites_map	3	x
+player_r2		-	0	sprites_map	4	x
+player_r	player_r1;player_r2		0.3
+
+ogre0_1		-	0	sprites_map	0	-
+ogre0_2		-	0	sprites_map	1	-
+
+ogre0	ogre0_1;ogre0_2	0.3
+
+ogre1_1		-	0	sprites_map	12	-
+ogre1_2		-	0	sprites_map	13	-
+
+ogre1	ogre1_1;ogre1_2	0.3
+
+ogre2_1		-	0	sprites_map	15	-
+ogre2_2		-	0	sprites_map	16	-
+
+ogre2	ogre2_1;ogre2_2	0.3
+
+egg		-	9	sprites_map	14	-
+
+spawn_1		-	0	sprites_map	17	-
+spawn_2		-	0	sprites_map	18	-
+
+spawn	spawn_1;spawn_2	0.3
+
+bonus_1		0	1	sprites_map	5	-
+bonus_2		1	1	sprites_map	6	-
+bonus_3		2	1	sprites_map	19	-
+bonus_4		3	1	sprites_map	20	-
+bonus_5		4	1	sprites_map	21	-
+
+bullet_1	-	0	sprites_map	7	-
+bullet_2	-	0	sprites_map	8	-
+
+bullet	bullet_1;bullet_2		0.5
+
+explo_u1		-	0	sprites_map	9	-
+explo_u2		-	0	sprites_map	10	-
+explo_u		explo_u1;explo_u2	0.5
+
+explo_d1		-	0	sprites_map	9	y
+explo_d2		-	0	sprites_map	10	y
+explo_d		explo_d1;explo_d2	0.5
+
+pts		-	0	sprites_map	11	-
+
+pts_large	-	0	25-large.png	-
+
+explo	explo-short-8k.wav
+bonus	systemstart-8k.wav
+death	death-8k.wav
+
+manual_touch	-	0	manual-touch.png	-
+manual_accel	-	0	manual-accel.png	-

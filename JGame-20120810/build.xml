@@ -1,0 +1,201 @@
+<project name="JGame" default="base" basedir=".">
+	<description>
+		JGame base classes build file
+	</description>
+	<property name="jars"  location="jars"/>
+
+	<!-- j2me specific stuff -->
+	<property environment="env"/>
+	<property name="preverify" value="${env.WTK_HOME}/bin/preverify"/>
+	<property name="cldcapi" value="${env.WTK_HOME}/lib/cldcapi11.jar"/>
+	<property name="midpapi" value="${env.WTK_HOME}/lib/midpapi20.jar"/>
+
+	<target name="base" description="Compile JRE base classes">
+		<delete dir="classes-jre"/>
+	  	<mkdir dir="classes-jre"/>
+	  	<mkdir dir="${jars}"/>
+		<javac srcdir="." destdir="classes-jre" source="1.3" target="1.3"
+		debug="true">
+			<include name="src-base/*/*/*.java"/>
+			<include name="src-base/*/*.java"/>
+			<include name="src-jre/jgame/platform/*.java"/>
+		</javac>
+		<jar destfile="${jars}/jgame-jre.jar">
+			<fileset dir="classes-jre"/>
+		</jar>
+		<!-- jbox2d engine (optional) -->
+	  	<mkdir dir="classes-jbox2d-jre"/>
+		<javac srcdir="." destdir="classes-jbox2d-jre" source="1.5" target="1.5"
+		debug="true">
+			<include name="src-jbox2d/org/jbox2d/*/*.java"/>
+			<include name="src-jbox2d/org/jbox2d/*/*/*.java"/>
+		</javac>
+	</target>
+
+	<target name="base-jogl" description="Compile JRE-JOGL base classes">
+		<delete dir="classes-jogl"/>
+	  	<mkdir dir="classes-jogl"/>
+	  	<mkdir dir="${jars}"/>
+		<javac srcdir="." destdir="classes-jogl" source="1.4" target="1.4"
+		debug="true">
+			<classpath>
+				<pathelement path="${java.class.path}"/>
+				<pathelement path="classes-jogl"/>
+			</classpath>
+			<include name="src-base/*/*/*.java"/>
+			<include name="src-base/*/*.java"/>
+			<include name="src-jre/jgame/platform/*.java"/>
+			<exclude name="src-jre/jgame/platform/JGEngine.java"/>
+			<include name="src-jogl/jgame/platform/*.java"/>
+		</javac>
+		<jar destfile="${jars}/jgame-jogl.jar">
+			<fileset dir="classes-jogl"/>
+		</jar>
+		<!-- jbox2d engine (optional) -->
+	  	<mkdir dir="classes-jbox2d-jre"/>
+		<javac srcdir="." destdir="classes-jbox2d-jre" source="1.5" target="1.5"
+		debug="true">
+			<include name="src-jbox2d/org/jbox2d/*/*.java"/>
+			<include name="src-jbox2d/org/jbox2d/*/*/*.java"/>
+		</javac>
+	</target>
+
+	<target name="base-midp" description="Compile base classes for J2ME"
+	depends="tools">
+		<delete dir="classes-midp-tmp"/>
+		<mkdir dir="classes-midp-tmp"/>
+		<delete dir="classes-midp"/>
+		<mkdir dir="classes-midp"/>
+		<javac srcdir="." destdir="classes-midp-tmp" source="1.3" target="1.3"
+		debug="true"
+		bootclasspath="${cldcapi};${midpapi}">
+			<include name="src-base/*/*.java"/>
+			<include name="src-base/*/*/*.java"/>
+			<include name="src-midp/jgame/platform/*.java"/>
+		</javac>
+		<exec executable="${preverify}">
+			<arg value="-classpath"/>
+			<arg value="${cldcapi}${path.separator}${midpapi}${path.separator}classes-midp-tmp"/>
+			<arg value="-d"/>
+			<arg value="classes-midp"/>
+			<arg value="classes-midp-tmp"/>
+		</exec>
+		<!-- jbox2d engine (optional) -->
+	  	<delete dir="classes-jbox2d-midp-tmp"/>
+	  	<mkdir dir="classes-jbox2d-midp-tmp"/>
+	  	<delete dir="classes-jbox2d-midp"/>
+	  	<mkdir dir="classes-jbox2d-midp"/>
+		<javac srcdir="." destdir="classes-jbox2d-midp-tmp" source="1.3" target="1.3"
+		debug="true"
+		bootclasspath="${cldcapi};${midpapi}">
+			<include name="src-jbox2d/org/jbox2d/*/*.java"/>
+			<include name="src-jbox2d/org/jbox2d/*/*/*.java"/>
+		</javac>
+		<exec executable="${preverify}">
+			<arg value="-classpath"/>
+			<arg value="${cldcapi}${path.separator}${midpapi}${path.separator}classes-jbox2d-midp-tmp"/>
+			<arg value="-d"/>
+			<arg value="classes-jbox2d-midp"/>
+			<arg value="classes-jbox2d-midp-tmp"/>
+		</exec>
+	</target>
+
+	<target name="tools" description="Compile tools">
+	  	<delete dir="classes-tools"/>
+	  	<mkdir dir="classes-tools"/>
+	  	<mkdir dir="${jars}"/>
+		<javac srcdir="src-tools" destdir="classes-tools" source="1.5" target="1.5"
+		debug="true"
+		classpath="libs/sax.jar;src-tools">
+		</javac>
+		<unzip src="libs/sax.jar" dest="classes-tools">
+		</unzip>
+
+		<jar destfile="${jars}/jar2jad.jar" basedir="classes-tools"
+		includes="createjad/*">
+			<manifest>
+				<attribute name="Main-class"
+				value="createjad.Jar2Jad"/>
+			</manifest>
+		</jar>
+		<jar destfile="${jars}/inkscape2physics.jar" basedir="classes-tools"
+		>
+			<fileset dir="classes-tools" includes="inkscape2physics"/>
+			<fileset dir="classes-tools" includes="org/xml/sax"/>
+			<manifest>
+				<attribute name="Main-class"
+				value="inkscape2physics.InkscapetoPhysics"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="docs" description="Generate javadocs">
+		<javadoc 
+		sourcepath="src-base;src-jre"
+		defaultexcludes="yes"
+		destdir="javadoc"
+		author="true"
+		version="true"
+		use="true"/>
+	</target>
+
+	<target name="apps" description="Example apps (JRE)">
+		<antcall target="apps-generic">
+			<param name="target" value="jre"/>
+		</antcall>
+	</target>
+
+	<target name="apps-jogl" description="Example apps (JOGL)">
+		<antcall target="apps-generic">
+			<param name="target" value="jogl"/>
+		</antcall>
+	</target>
+
+	<target name="apps-generic" description="Example apps">
+		<ant antfile="tutorial/build.xml" target="${target}"/>
+		<ant antfile="examples/billiardberzerk/build.xml" target="${target}"/>
+		<ant antfile="examples/gamegen/build.xml" target="${target}"/>
+		<ant antfile="examples/cavernsoffire/build.xml" target="${target}"/>
+		<ant antfile="examples/chainreaction/build.xml" target="${target}"/>
+		<ant antfile="examples/dingbats/build.xml" target="${target}"/>
+		<ant antfile="examples/dungeonsofhack/build.xml" target="${target}"/>
+		<ant antfile="examples/guardian/build.xml" target="${target}"/>
+		<ant antfile="examples/insecticide/build.xml" target="${target}"/>
+		<ant antfile="examples/matrixminer/build.xml" target="${target}"/>
+		<ant antfile="examples/munchies/build.xml" target="${target}"/>
+		<ant antfile="examples/nebulaalpha/build.xml" target="${target}"/>
+		<ant antfile="examples/ogrotron/build.xml" target="${target}"/>
+		<ant antfile="examples/packetstorm/build.xml" target="${target}"/>
+		<ant antfile="examples/pacmanandzombies/build.xml" target="${target}"/>
+		<ant antfile="examples/pubman/build.xml" target="${target}"/>
+		<ant antfile="examples/ramjet/build.xml" target="${target}"/>
+		<ant antfile="examples/spacerun/build.xml" target="${target}"/>
+		<ant antfile="examples/spacerun2/build.xml" target="${target}"/>
+		<ant antfile="examples/spacerun3/build.xml" target="${target}"/>
+		<ant antfile="examples/waterworld/build.xml" target="${target}"/>
+		<ant antfile="examples/webwars/build.xml" target="${target}"/>
+	</target>
+
+	<target name="apps-midp" description="Example apps (MIDP)">
+		<ant antfile="examples/billiardberzerk/build.xml" target="midp"/>
+		<ant antfile="examples/cavernsoffire/build.xml" target="midp"/>
+		<ant antfile="examples/dungeonsofhack/build.xml" target="midp"/>
+		<ant antfile="examples/matrixminer/build.xml" target="midp"/>
+		<ant antfile="examples/munchies/build.xml" target="midp"/>
+		<ant antfile="examples/ogrotron/build.xml" target="midp"/>
+		<ant antfile="examples/pubman/build.xml" target="midp"/>
+		<ant antfile="examples/spacerun/build.xml" target="midp"/>
+		<ant antfile="examples/spacerun2/build.xml" target="midp"/>
+		<ant antfile="examples/spacerun3/build.xml" target="midp"/>
+	</target>
+
+	<target name="apps-android" description="Example apps (Android)">
+		<ant antfile="examples/billiardberzerk/build.xml" target="android"/>
+		<ant antfile="examples/cavernsoffire/build.xml" target="android"/>
+		<ant antfile="examples/ogrotron/build.xml" target="android"/>
+		<ant antfile="examples/pacmanandzombies/build.xml" target="android"/>
+		<ant antfile="examples/webwars/build.xml" target="android"/>
+	</target>
+
+</project>
+

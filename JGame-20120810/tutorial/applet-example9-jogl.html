@@ -1,0 +1,27 @@
+<html><head><title>Example applet</title></head>
+<body bgcolor=#484077 text=#ccbbdd link=#eeccff vlink=#dd88ff alink=#ffaaff>
+<center>
+<!-- note: we use canvaswidth / height to pass width and height to subapplet,
+     because regular width and height doesn't seem to work (is this a bug?)-->
+<!-- XXX the JOGL applet launcher is currently not working because the java.net
+     files have changed. -->
+<applet code="org.jdesktop.applet.util.JNLPAppletLauncher"
+      width=640
+      height=480
+      archive="http://download.java.net/media/applet-launcher/applet-launcher.jar,
+               http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jar,
+               http://download.java.net/media/gluegen/webstart/gluegen-rt.jar,
+              ../jars/jgame-jogl.jar, ../jars/Tutorial.jar">
+   <param name="codebase_lookup" value="false">
+   <param name="subapplet.classname" value="tutorial.Example9">
+   <param name="subapplet.displayname" value="JGame Example 9">
+   <param name="canvaswidth" value="640">
+   <param name="canvasheight" value="480">
+   <param name="noddraw.check" value="true">
+   <param name="progressbar" value="true">
+   <param name="jnlpNumExtensions" value="1">
+   <param name="jnlpExtension1"
+          value="http://download.java.net/media/jogl/builds/archive/jsr-231-webstart-current/jogl.jnlp">
+</applet>
+
+</body></html>

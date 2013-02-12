@@ -1,0 +1,47 @@
+mainmusic		lightforce.mid
+shoot			misc322-photonshot.wav
+explo			misc186-cannonshot.wav
+
+
+robot_map			robots-03-map-tr.gif	0	0	65	90	0	0
+explo_map			GasExplosion-bb-tr.gif	0	0	96	96	0	0
+bullet_map			burstbullet-tr.gif		0	0	60	85	0	0
+font_map			font293-tr.gif				0	0	32	20	0	0
+bgimg		p	0	nebula_13-fudged.jpg	-	0	0	0	0
+player		p	0	SpaceShuttle-sm-tr.gif	-	5	15	41	97
+
+robot_r1	p	0	robot_map	0	-	8	6	46	75
+robot_r2	p	0	robot_map	1	-	8	6	46	75
+robot_r3	p	0	robot_map	2	-	8	6	46	75
+robot_r4	p	0	robot_map	3	-	8	6	46	75
+robot_r5	p	0	robot_map	4	-	8	6	46	75
+robot_r6	p	0	robot_map	5	-	8	6	46	75
+robot_l1	p	0	robot_map	0	x	8	6	46	75
+robot_l2	p	0	robot_map	1	x	8	6	46	75
+robot_l3	p	0	robot_map	2	x	8	6	46	75
+robot_l4	p	0	robot_map	3	x	8	6	46	75
+robot_l5	p	0	robot_map	4	x	8	6	46	75
+robot_l6	p	0	robot_map	5	x	8	6	46	75
+explo1		p	0	explo_map	1	-	0	0	32	32
+explo2		p	0	explo_map	2	-	0	0	32	32
+explo3		p	0	explo_map	3	-	0	0	32	32
+explo4		p	0	explo_map	4	-	0	0	32	32
+explo5		p	0	explo_map	5	-	0	0	32	32
+explo6		p	0	explo_map	6	-	0	0	32	32
+explo7		p	0	explo_map	7	-	0	0	32	32
+explo8		p	0	explo_map	8	-	0	0	32	32
+explo9		p	0	explo_map	9	-	0	0	32	32
+explo10		p	0	explo_map	10	-	0	0	32	32
+explo11		p	0	explo_map	11	-	0	0	32	32
+explo12		p	0	explo_map	12	-	0	0	32	32
+explo13		p	0	explo_map	13	-	0	0	32	32
+explo14		p	0	explo_map	14	-	0	0	32	32
+bullet1		p	0	bullet_map	0	-	8	32	48	48
+bullet2		p	0	bullet_map	1	-	8	32	48	48
+bullet3		p	0	bullet_map	2	-	8	32	48	48
+
+
+robot_l		robot_l1;robot_l2;robot_l3;robot_l4;robot_l5;robot_l6;	0.3
+robot_r		robot_r1;robot_r2;robot_r3;robot_r4;robot_r5;robot_r6;	0.3
+explo		explo1;explo2;explo3;explo4;explo5;explo6;explo7;explo8;explo9;explo10;explo11;explo12;explo13;explo14	0.45
+bullet		bullet1;bullet2;bullet3;bullet2				0.5

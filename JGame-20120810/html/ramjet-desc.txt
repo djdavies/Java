@@ -1,0 +1,5 @@
+An asteroids clone.
+<br>
+Shoot the asteroids and UFOs.
+<br>
+Up = thrust, Down = brake.

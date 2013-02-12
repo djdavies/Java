@@ -1,0 +1,280 @@
+splash_image	-	0	tomatogames-mobile-splash-2-288-dither.png	-
+
+intro_image		-	0	cavernsoffire-intro.png	-
+
+playerexplo	explo122k.wav
+explo0	exploatari2-22k.wav
+explo1	exploatari2b-22k.wav
+shoot	shortshoot2-soft.wav
+land	signal2.wav
+lava	polentamixed2reverbmaxed22k-3.wav
+drip	drip-echo-mono22k.wav
+rumble0	rumble1-22k.wav
+rumble1	rumble1b-22k.wav
+tankshoot	shortshoot4.wav
+
+
+
+light1	-	0	lightsprite1.png	-
+
+explo1_map	explode_1.png	0	0	64	64	0	0
+
+explo1_0	-	0	explo1_map	0	-
+explo1_1	-	0	explo1_map	1	-
+explo1_2	-	0	explo1_map	2	-
+explo1_3	-	0	explo1_map	3	-
+explo1_4	-	0	explo1_map	4	-
+explo1_5	-	0	explo1_map	5	-
+explo1_6	-	0	explo1_map	6	-
+explo1_7	-	0	explo1_map	7	-
+
+explo1_8	-	0	explo1_map	8	-
+explo1_9	-	0	explo1_map	9	-
+explo1_10	-	0	explo1_map	10	-
+explo1_11	-	0	explo1_map	11	-
+explo1_12	-	0	explo1_map	12	-
+explo1_13	-	0	explo1_map	13	-
+explo1_14	-	0	explo1_map	14	-
+explo1_15	-	0	explo1_map	15	-
+
+explo1	explo1_0;explo1_1;explo1_2;explo1_3;explo1_4;explo1_5;explo1_6;explo1_7;explo1_8;explo1_9;explo1_10;explo1_11;explo1_12;explo1_13;explo1_14;explo1_15	1.0
+
+explo2_map	explode_3.png	0	0	64	64	0	0
+
+explo2_0	-	0	explo2_map	0	-
+explo2_1	-	0	explo2_map	1	-
+explo2_2	-	0	explo2_map	2	-
+explo2_3	-	0	explo2_map	3	-
+explo2_4	-	0	explo2_map	4	-
+explo2_5	-	0	explo2_map	5	-
+explo2_6	-	0	explo2_map	6	-
+explo2_7	-	0	explo2_map	7	-
+
+explo2_8	-	0	explo2_map	8	-
+explo2_9	-	0	explo2_map	9	-
+explo2_10	-	0	explo2_map	10	-
+explo2_11	-	0	explo2_map	11	-
+explo2_12	-	0	explo2_map	12	-
+explo2_13	-	0	explo2_map	13	-
+explo2_14	-	0	explo2_map	14	-
+explo2_15	-	0	explo2_map	15	-
+
+explo2	explo2_0;explo2_1;explo2_2;explo2_3;explo2_4;explo2_5;explo2_6;explo2_7;explo2_8;explo2_9;explo2_10;explo2_11;explo2_12;explo2_13;explo2_14;explo2_15	1.0
+
+explo3_0	-	0	explo1_map	0	l
+explo3_1	-	0	explo1_map	1	l
+explo3_2	-	0	explo1_map	2	l
+explo3_3	-	0	explo1_map	3	l
+explo3_4	-	0	explo1_map	4	l
+explo3_5	-	0	explo1_map	5	l
+explo3_6	-	0	explo1_map	6	l
+explo3_7	-	0	explo1_map	7	l
+
+explo3_8	-	0	explo1_map	8	l
+explo3_9	-	0	explo1_map	9	l
+explo3_10	-	0	explo1_map	10	l
+explo3_11	-	0	explo1_map	11	l
+explo3_12	-	0	explo1_map	12	l
+explo3_13	-	0	explo1_map	13	l
+explo3_14	-	0	explo1_map	14	l
+explo3_15	-	0	explo1_map	15	l
+
+explo3	explo3_0;explo3_1;explo3_2;explo3_3;explo3_4;explo3_5;explo3_6;explo3_7;explo3_8;explo3_9;explo3_10;explo3_11;explo3_12;explo3_13;explo3_14;explo3_15	1.0
+
+
+explo4_0	-	0	explo2_map	0	-
+explo4_1	-	0	explo2_map	1	-
+explo4_2	-	0	explo2_map	2	-
+explo4_3	-	0	explo2_map	3	-
+explo4_4	-	0	explo2_map	4	-
+explo4_5	-	0	explo2_map	5	-
+explo4_6	-	0	explo2_map	6	-
+explo4_7	-	0	explo2_map	7	-
+
+explo4_8	-	0	explo2_map	8	-
+explo4_9	-	0	explo2_map	9	-
+explo4_10	-	0	explo2_map	10	-
+explo4_11	-	0	explo2_map	11	-
+explo4_12	-	0	explo2_map	12	-
+explo4_13	-	0	explo2_map	13	-
+explo4_14	-	0	explo2_map	14	-
+explo4_15	-	0	explo2_map	15	-
+
+explo4	explo4_0;explo4_1;explo4_2;explo4_3;explo4_4;explo4_5;explo4_6;explo4_7;explo4_8;explo4_9;explo4_10;explo4_11;explo4_12;explo4_13;explo4_14;explo4_15	1.0
+
+crosshairs_map	crosshairs.png	0	0	32	32	0	0
+
+crosshairs0	-	0	crosshairs_map	0	-
+crosshairs1	-	0	crosshairs_map	1	-
+crosshairs2	-	0	crosshairs_map	2	-
+
+crosshairs	crosshairs1;crosshairs2;crosshairs3	0.333
+
+spr_map			firecavernsprites.png	0	0	16	16	0	0
+
+ship0			p	0	spr_map		0	-	3	3	10	10
+ship1			p	0	spr_map		16	-	3	3	10	10
+ship2			p	0	spr_map		17	-	3	3	10	10
+ship3			p	0	spr_map		18	-	3	3	10	10
+
+ship	ship0;ship1;ship2;ship3	0.333333333
+
+
+bomb_0		p	0	spr_map	1	-	5	6	6	8
+bomb_1		p	0	spr_map	2	-	5	6	6	8
+
+bomb	bomb_0;bomb_1	0.5
+
+
+tank_ur0		p	0	spr_map	3	-
+tank_ur1		p	0	spr_map	4	-
+tank_ur			tank_ur0;tank_ur1	0.5
+
+tank_uru0		p	0	spr_map	3	l
+tank_uru1		p	0	spr_map	4	l
+tank_uru		tank_uru0;tank_uru1	0.5
+
+tank_urd0		p	0	spr_map	3	r
+tank_urd1		p	0	spr_map	4	r
+tank_urd		tank_urd0;tank_urd1	0.5
+
+tank_ul0		p	0	spr_map	3	x
+tank_ul1		p	0	spr_map	4	x
+tank_ul			tank_ul0;tank_ul1	0.5
+
+tank_ulu0		p	0	spr_map	3	xl
+tank_ulu1		p	0	spr_map	4	xl
+tank_ulu		tank_ulu0;tank_ulu1	0.5
+
+tank_uld0		p	0	spr_map	3	xr
+tank_uld1		p	0	spr_map	4	xr
+tank_uld		tank_uld0;tank_uld1	0.5
+
+
+tank_dr0		p	0	spr_map	3	y
+tank_dr1		p	0	spr_map	4	y
+tank_dr			tank_dr0;tank_dr1	0.5
+
+tank_dru0		p	0	spr_map	3	ry
+tank_dru1		p	0	spr_map	4	ry
+tank_dru		tank_dru0;tank_dru1	0.5
+
+tank_drd0		p	0	spr_map	3	ly
+tank_drd1		p	0	spr_map	4	ly
+tank_drd		tank_drd0;tank_drd1	0.5
+
+tank_dl0		p	0	spr_map	3	xy
+tank_dl1		p	0	spr_map	4	xy
+tank_dl			tank_dl0;tank_dl1	0.5
+
+tank_dlu0		p	0	spr_map	3	xry
+tank_dlu1		p	0	spr_map	4	xry
+tank_dlu		tank_dlu0;tank_dlu1	0.5
+
+tank_dld0		p	0	spr_map	3	xly
+tank_dld1		p	0	spr_map	4	xly
+tank_dld		tank_dld0;tank_dld1	0.5
+
+fireball_p		p	0	spr_map	5	-
+fireball_p_sm	p	0	spr_map	6	-	4	4	8	8
+
+fireball0		p	0	spr_map	19	-
+fireball1		p	0	spr_map	21	-
+fireball	fireball0;fireball1		0.3
+
+fireball_sm0	p	0	spr_map	20	-	4	4	8	8
+fireball_sm1	p	0	spr_map	22	-	4	4	8	8
+fireball_sm	fireball_sm0;fireball_sm1		0.3
+
+
+coil0		p	0	spr_map	9	-
+coil1		p	0	spr_map	11	-
+coil2		p	0	spr_map	10	-
+
+coil		coil0;coil1;coil2	0.3
+
+bat_u0			p	0	spr_map	12	y
+bat_u1			p	0	spr_map	13	y
+bat_d0			p	0	spr_map	12	-
+bat_d1			p	0	spr_map	13	-
+
+bat_u	bat_u0;bat_u1	0.4
+bat_d	bat_d0;bat_d1	0.4
+
+
+jellyr0		p	0	spr_map	14	x
+jellyr1		p	0	spr_map	15	x
+
+jellyr		jellyr0;jellyr1		0.1
+
+jellyl0		p	0	spr_map	14	-
+jellyl1		p	0	spr_map	15	-
+
+jellyl		jellyl0;jellyl1		0.1
+
+bullet_map			ballbullet-tr.png			0	0	16	16	0	0
+
+bullet_0	p	0	spr_map	7	-	5	5	6	6
+bullet_1	p	0	spr_map	8	-	5	5	6	6
+
+bullet	bullet_0;bullet_1	0.5
+
+//cave stuff
+
+
+
+//regular cave walls
+
+cave_map		cavewalls.png			0	0	16	16	0	0
+
+cave_empty1	.	0	cave_map	5	-
+cave_empty2	,	0	cave_map	5	r
+
+lava1	<	3	cave_map	6	-
+lava2	>	3	cave_map	6	l
+
+lava_0		<0	3	cave_map	6	-
+lava_u		<1	3	cave_map	11	r
+lava_d		<2	3	cave_map	11	l
+lava_ud		<3	3	cave_map	14	r
+lava_l		<4	3	cave_map	11	-
+lava_ul		<5	3	cave_map	12	-
+lava_dl		<6	3	cave_map	12	l
+lava_udl	<7	3	cave_map	13	-
+lava_r		<8	3	cave_map	11	x
+lava_ur		<9	3	cave_map	12	r
+lava_dr		<10	3	cave_map	12	u
+lava_udr	<11	3	cave_map	13	x
+lava_lr		<12	3	cave_map	14	-
+lava_ulr	<13	3	cave_map	13	r
+lava_dlr	<14	3	cave_map	13	l
+
+landingpadl		[	5	cave_map	7	-
+landingpadr		]	5	cave_map	8	-
+
+landingpadgl	(	5	cave_map	9	-
+landingpadgr	)	5	cave_map	10	-
+
+cave_dummy	#	1	cave_map	0	-
+
+cave_0		#0	1	cave_map	0	-
+cave_u		#1	1	cave_map	1	r
+cave_d		#2	1	cave_map	1	l
+cave_ud		#3	1	cave_map	4	r
+cave_l		#4	1	cave_map	1	-
+cave_ul		#5	1	cave_map	2	-
+cave_dl		#6	1	cave_map	2	l
+cave_udl	#7	1	cave_map	3	-
+cave_r		#8	1	cave_map	1	x
+cave_ur		#9	1	cave_map	2	r
+cave_dr		#10	1	cave_map	2	u
+cave_udr	#11	1	cave_map	3	x
+cave_lr		#12	1	cave_map	4	-
+cave_ulr	#13	1	cave_map	3	r
+cave_dlr	#14	1	cave_map	3	l
+
+cave_bg0		-	0	cavetile1-sm.jpg	-
+cave_bg1		-	0	cavetile2-sm.jpg	-
+cave_bg2		-	0	cavetile3-sm.jpg	-
+cave_bg3		-	0	cavetile4-sm.jpg	-
+

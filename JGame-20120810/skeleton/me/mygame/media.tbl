@@ -1,0 +1,236 @@
+#Replace with the 16x16, 24x24, or 32x32 png as desired
+icons_map		icons8x8-d-tr.png		0	0	8	8	0	0
+
+#Geometric
+block1			b1	0	icons_map	0		-
+block2			b2	0	icons_map	1		-
+block3			b3	0	icons_map	2		-
+dot				.	0	icons_map	3		-
+box1			x1	0	icons_map	4		-
+box2			x2	0	icons_map	5		-
+box3			x3	0	icons_map	6		-
+ball1			o1	0	icons_map	7		-
+ball2			o2	0	icons_map	8		-
+ball3			o3	0	icons_map	9		-
+circle			o	0	icons_map	10		-
+cross			x	0	icons_map	11		-
+plus			+	0	icons_map	12		-
+barx			-	0	icons_map	13		-
+bary			|	0	icons_map	13		r
+baru			/	0	icons_map	14		-
+bard			\	0	icons_map	14		x
+diagonalul		d1	0	icons_map	15		-
+diagonalur		d2	0	icons_map	15		x
+diagonaldl		d3	0	icons_map	15		y
+diagonaldr		d4	0	icons_map	15		xy
+
+block		block1;block2;block3;dot	0.3		true
+box			box1;box2;box3;dot			0.3		true
+ball		ball1;ball2;ball3;dot		0.3		true
+blip		ball1;circle1				0.2
+crossturn	cross;plus					0.3
+barturn		bary;barup;barx;bardown		0.4
+diagonalturn	diagonalul;diagonalur;diagonaldr;diagonaldl		0.3
+
+
+#obstacles
+pyramid			py	0	icons_map	17		-
+wallx			wx	0	icons_map	18		-
+wally			wy	0	icons_map	18		r
+brickwall		wb	0	icons_map	19		-
+house			ho	0	icons_map	20		-
+tree			^	0	icons_map	21		-
+palmtree		pa	0	icons_map	22		-
+mushroom		mu	0	icons_map	23		-
+ledge1			l1	0	icons_map	24		-
+ledge2			l2	0	icons_map	25		-
+door			d	0	icons_map	26		-
+stair			#	0	icons_map	27		-
+boulder			*	0	icons_map	28		-
+
+
+#objects
+gun				gu	0	icons_map	30		-
+bomb			bo	0	icons_map	31		-
+key				ke	0	icons_map	32		-
+money			$	0	icons_map	33		-
+skull			sk	0	icons_map	34		-
+heart			he	0	icons_map	35		-
+fruit1			f1	0	icons_map	36		-
+fruit2			f2	0	icons_map	37		-
+egg				eg	0	icons_map	38		-
+flag			fl	0	icons_map	39		-
+star1			*1	0	icons_map	40		-
+star2			*2	0	icons_map	41		-
+arrowu			au	0	icons_map	42		-
+arrowd			ad	0	icons_map	42		y
+arrowl			al	0	icons_map	42		r
+arrowr			ar	0	icons_map	42		l
+fire			fi	0	icons_map	43		-
+cloud			cl	0	icons_map	44		-
+boltl			~l	0	icons_map	45		-
+boltr			~r	0	icons_map	45		x
+
+
+#humanoids
+human1			?	0	icons_map	47		-
+human2			?	0	icons_map	48		-
+humanl1			?	0	icons_map	49		-
+humanl2			?	0	icons_map	50		-
+humanr1			?	0	icons_map	49		x
+humanr2			?	0	icons_map	50		x
+humanu1			?	0	icons_map	49		r
+humanu2			?	0	icons_map	50		r
+humand1			?	0	icons_map	49		l
+humand2			?	0	icons_map	50		l
+robot			?	0	icons_map	51		-
+humansmall		?	0	icons_map	52		-
+
+human		human1;human2		0.3
+humanl		humanl1;humanl2		0.3
+humanr		humanr1;humanr2		0.3
+humanu		humanu1;humanu2		0.3
+humand		humand1;humand2		0.3
+
+
+#monsters
+pacmanl1		?	0	icons_map	54		-
+pacmanl2		?	0	icons_map	55		-
+pacmanr1		?	0	icons_map	54		x
+pacmanr2		?	0	icons_map	55		x
+pacmanu1		?	0	icons_map	54		r
+pacmanu2		?	0	icons_map	55		r
+pacmand1		?	0	icons_map	54		l
+pacmand2		?	0	icons_map	55		l
+smiley			?	0	icons_map	56		-
+invader			?	0	icons_map	57		-
+ufo1			?	0	icons_map	58		-
+ufo2			?	0	icons_map	58		x
+monster			?	0	icons_map	59		-
+ghostl			?	0	icons_map	60		-
+ghostr			?	0	icons_map	60		x
+
+ufo			ufo1;ufo2			0.5
+pacmanl		pacmanl1;pacmanl2		0.3
+pacmanr		pacmanr1;pacmanr2		0.3
+pacmanu		pacmanu1;pacmanu2		0.3
+pacmand		pacmand1;pacmand2		0.3
+
+
+#animals
+bat1			?	0	icons_map	62		-
+bat2			?	0	icons_map	63		-
+bugu			?	0	icons_map	64		-
+bugd			?	0	icons_map	64		y
+bugl			?	0	icons_map	64		l
+bugr			?	0	icons_map	64		r
+spideru			?	0	icons_map	65		-
+spiderd			?	0	icons_map	65		y
+spiderl			?	0	icons_map	65		l
+spiderr			?	0	icons_map	65		r
+crabu1			?	0	icons_map	66		-
+crabu2			?	0	icons_map	66		x
+crabd1			?	0	icons_map	66		y
+crabd2			?	0	icons_map	66		yx
+crabl1			?	0	icons_map	66		l
+crabl2			?	0	icons_map	66		lx
+crabr1			?	0	icons_map	66		r
+crabr2			?	0	icons_map	66		rx
+fishl			?	0	icons_map	67		-
+fishr			?	0	icons_map	67		x
+fishu			?	0	icons_map	67		r
+fishd			?	0	icons_map	67		l
+dogl1			?	0	icons_map	68		-
+dogl2			?	0	icons_map	69		-
+dogr1			?	0	icons_map	68		x
+dogr2			?	0	icons_map	69		x
+camell			?	0	icons_map	70		-
+camelr			?	0	icons_map	70		x
+turtleu			?	0	icons_map	71		-
+turtled			?	0	icons_map	71		y
+turtlel			?	0	icons_map	71		l
+turtler			?	0	icons_map	71		r
+sharkl			?	0	icons_map	72		-
+sharkr			?	0	icons_map	72		x
+sharku			?	0	icons_map	72		r
+sharkd			?	0	icons_map	72		l
+scorpionl1		?	0	icons_map	73		-
+scorpionl2		?	0	icons_map	74		-
+scorpionr1		?	0	icons_map	73		x
+scorpionr2		?	0	icons_map	74		x
+rabbitl1		?	0	icons_map	75		-
+rabbitl2		?	0	icons_map	76		-
+rabbitr1		?	0	icons_map	75		x
+rabbitr2		?	0	icons_map	76		x
+birdl1			?	0	icons_map	77		-
+birdl2			?	0	icons_map	78		-
+birdr1			?	0	icons_map	77		x
+birdr2			?	0	icons_map	78		x
+snakeheadu		?	0	icons_map	79		-
+snakeheadd		?	0	icons_map	79		y
+snakeheadl		?	0	icons_map	79		l
+snakeheadr		?	0	icons_map	79		r
+snakebodyu		?	0	icons_map	80		-
+snakebodyd		?	0	icons_map	80		y
+snakebodyl		?	0	icons_map	80		l
+snakebodyr		?	0	icons_map	80		r
+
+bat			bat1;bat2		0.3
+crabu		crabu1;crabu2	0.4
+crabd		crabd1;crabd2	0.4
+crabl		crabl1;crabl2	0.4
+crabr		crabr1;crabr2	0.4
+dogl		dogl1;dogl2	0.4
+dogr		dogr1;dogr2	0.4
+scorpionl	scorpionl1;scorpionl2	0.4
+scorpionr	scorpionr1;scorpionr2	0.4
+rabbitl		rabbitl1;rabbitl2	0.4
+rabbitr		rabbitr1;rabbitr2	0.4
+birdl		birdl1;birdl2	0.4
+birdr		birdr1;birdr2	0.4
+
+
+
+#vehicles
+shipu			?	0	icons_map	82		-
+shipd			?	0	icons_map	82		y
+shipl			?	0	icons_map	82		l
+shipr			?	0	icons_map	82		r
+jetu			?	0	icons_map	83		-
+jetd			?	0	icons_map	83		y
+jetl			?	0	icons_map	83		l
+jetr			?	0	icons_map	83		r
+car1l			?	0	icons_map	84		-
+car1r			?	0	icons_map	84		x
+car1u			?	0	icons_map	84		r
+car1d			?	0	icons_map	84		l
+car2l			?	0	icons_map	85		-
+car2r			?	0	icons_map	85		x
+car2u			?	0	icons_map	85		r
+car2d			?	0	icons_map	85		l
+chopperl1		?	0	icons_map	86		-
+chopperl2		?	0	icons_map	87		-
+chopperr1		?	0	icons_map	86		x
+chopperr2		?	0	icons_map	87		x
+tankl			?	0	icons_map	88		-
+tankr			?	0	icons_map	88		x
+tanku			?	0	icons_map	88		r
+tankd			?	0	icons_map	88		l
+boatl			?	0	icons_map	89		-
+boatr			?	0	icons_map	89		x
+rocketu			?	0	icons_map	90		-
+rocketd			?	0	icons_map	90		y
+rocketl			?	0	icons_map	90		l
+rocketr			?	0	icons_map	90		r
+parachute		?	0	icons_map	91		-
+submarinel		?	0	icons_map	92		-
+submariner		?	0	icons_map	92		x
+balloon			?	0	icons_map	93		-
+planeu			?	0	icons_map	94		-
+planed			?	0	icons_map	94		y
+planel			?	0	icons_map	94		l
+planer			?	0	icons_map	94		r
+
+chopperl		chopperl1;chopperl2		0.5
+chopperr		chopperr1;chopperr2		0.5
+

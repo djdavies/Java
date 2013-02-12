@@ -1,0 +1,162 @@
+splash_image	a	1	matrixminer-splash.gif	-	0	0	16	16
+
+explo		SpriteEx-Mark_E_B-1128-amp-boost.wav
+shoot		ToySpace-Mark_E_B-711.wav
+pickup		Loaded-8068-edit-sm.wav
+extract		concrete_blocks-sm2.wav
+playerdead	laser-domson-2136.wav
+leveldone	zap_dela-297-cut-sm.wav
+enemyshoot	32953__HardPCM__Chip053-cut-sm.wav
+eatgoodie	vwoom-148-amp.wav
+
+player_map			train16-purple.gif			0	0	16	16	0	0
+enemy1_map			killertomato16.gif			0	0	16	16	0	0
+enemy2_map			dragon16.gif				0	0	16	16	0	0
+enemy3_map			wasp16.gif					0	0	16	16	0	0
+goodie_map			goodie-circle-tr.gif		0	0	16	16	0	0
+explo_map			myexplob16-tr.gif			0	0	16	16	0	0
+bullet_map			ballbullet-tr.gif			0	0	16	16	0	0
+font_map			font234-red-tr.gif			0	0	16	16	0	0
+
+wall0		#0	1	iceblock-16.gif				-
+wall1		#1	1	iceblock-purple-yellow-16.gif	-
+wall2		#2	1	iceblock-red-16.gif			-
+wall3		#3	1	iceblock-orange-16.gif		-
+wall4		#4	1	iceblock-yellow-16.gif		-
+wall5		#5	1	iceblock-green-16.gif		-
+wall6		#6	1	iceblock-cyan-16.gif		-
+
+space		.	0	null							-
+inviswall	*	2	null							-
+
+bullet_0	p	0	bullet_map	0	-	5	5	6	6
+bullet_1	p	0	bullet_map	1	-	5	5	6	6
+
+bullet	bullet_0;bullet_1	0.5
+
+player_d0	p	0	player_map	0	r	0	0	16	16
+player_d1	p	0	player_map	1	r	0	0	16	16
+player_d2	p	0	player_map	2	r	0	0	16	16
+player_d3	p	0	player_map	3	r	0	0	16	16
+player_d4	p	0	player_map	4	r	0	0	16	16
+player_d5	p	0	player_map	5	r	0	0	16	16
+player_d6	p	0	player_map	6	r	0	0	16	16
+player_d7	p	0	player_map	7	r	0	0	16	16
+
+player_u0	p	0	player_map	0	l	0	0	16	16
+player_u1	p	0	player_map	1	l	0	0	16	16
+player_u2	p	0	player_map	2	l	0	0	16	16
+player_u3	p	0	player_map	3	l	0	0	16	16
+player_u4	p	0	player_map	4	l	0	0	16	16
+player_u5	p	0	player_map	5	l	0	0	16	16
+player_u6	p	0	player_map	6	l	0	0	16	16
+player_u7	p	0	player_map	7	l	0	0	16	16
+
+player_l0	p	0	player_map	0	x	0	0	16	16
+player_l1	p	0	player_map	1	x	0	0	16	16
+player_l2	p	0	player_map	2	x	0	0	16	16
+player_l3	p	0	player_map	3	x	0	0	16	16
+player_l4	p	0	player_map	4	x	0	0	16	16
+player_l5	p	0	player_map	5	x	0	0	16	16
+player_l6	p	0	player_map	6	x	0	0	16	16
+player_l7	p	0	player_map	7	x	0	0	16	16
+
+player_r0	p	0	player_map	0	-	0	0	16	16
+player_r1	p	0	player_map	1	-	0	0	16	16
+player_r2	p	0	player_map	2	-	0	0	16	16
+player_r3	p	0	player_map	3	-	0	0	16	16
+player_r4	p	0	player_map	4	-	0	0	16	16
+player_r5	p	0	player_map	5	-	0	0	16	16
+player_r6	p	0	player_map	6	-	0	0	16	16
+player_r7	p	0	player_map	7	-	0	0	16	16
+
+player_		player_r0	0.0
+player_d	player_d0;player_d1;player_d2;player_d3;player_d4;player_d5;player_d6;player_d7	1
+player_u	player_u0;player_u1;player_u2;player_u3;player_u4;player_u5;player_u6;player_u7	1
+player_l	player_l0;player_l1;player_l2;player_l3;player_l4;player_l5;player_l6;player_l7	1
+player_r	player_r0;player_r1;player_r2;player_r3;player_r4;player_r5;player_r6;player_r7	1
+
+enemy1_0		p	0	enemy1_map	0	-	0	0	16	16
+enemy1_1		p	0	enemy1_map	1	-	0	0	16	16
+enemy1_2		p	0	enemy1_map	2	-	0	0	16	16
+enemy1_3		p	0	enemy1_map	3	-	0	0	16	16
+
+enemy1_l	enemy1_0;enemy1_1;enemy1_2;enemy1_3		0.3		true
+enemy1_r	enemy1_0;enemy1_1;enemy1_2;enemy1_3		0.3		true
+enemy1_u	enemy1_0;enemy1_1;enemy1_2;enemy1_3		0.3		true
+enemy1_d	enemy1_0;enemy1_1;enemy1_2;enemy1_3		0.3		true
+
+enemy2_r0		p	0	enemy2_map	0	-	0	0	16	16
+enemy2_r1		p	0	enemy2_map	1	-	0	0	16	16
+enemy2_r2		p	0	enemy2_map	2	-	0	0	16	16
+enemy2_r3		p	0	enemy2_map	3	-	0	0	16	16
+enemy2_r4		p	0	enemy2_map	4	-	0	0	16	16
+
+enemy2_l0		p	0	enemy2_map	0	x	0	0	16	16
+enemy2_l1		p	0	enemy2_map	1	x	0	0	16	16
+enemy2_l2		p	0	enemy2_map	2	x	0	0	16	16
+enemy2_l3		p	0	enemy2_map	3	x	0	0	16	16
+enemy2_l4		p	0	enemy2_map	4	x	0	0	16	16
+
+enemy2_u0		p	0	enemy2_map	0	l	0	0	16	16
+enemy2_u1		p	0	enemy2_map	1	l	0	0	16	16
+enemy2_u2		p	0	enemy2_map	2	l	0	0	16	16
+enemy2_u3		p	0	enemy2_map	3	l	0	0	16	16
+enemy2_u4		p	0	enemy2_map	4	l	0	0	16	16
+
+enemy2_d0		p	0	enemy2_map	0	r	0	0	16	16
+enemy2_d1		p	0	enemy2_map	1	r	0	0	16	16
+enemy2_d2		p	0	enemy2_map	2	r	0	0	16	16
+enemy2_d3		p	0	enemy2_map	3	r	0	0	16	16
+enemy2_d4		p	0	enemy2_map	4	r	0	0	16	16
+
+enemy2_l	enemy2_l0;enemy2_l1;enemy2_l2;enemy2_l3;enemy2_l4	0.3	
+enemy2_r	enemy2_r0;enemy2_r1;enemy2_r2;enemy2_r3;enemy2_r4	0.3
+enemy2_u	enemy2_u0;enemy2_u1;enemy2_u2;enemy2_u3;enemy2_u4	0.3
+enemy2_d	enemy2_d0;enemy2_d1;enemy2_d2;enemy2_d3;enemy2_d4	0.3
+
+enemy3_r0		p	0	enemy3_map	0	-	0	0	16	16
+enemy3_r1		p	0	enemy3_map	1	-	0	0	16	16
+enemy3_r2		p	0	enemy3_map	2	-	0	0	16	16
+
+enemy3_l0		p	0	enemy3_map	0	x	0	0	16	16
+enemy3_l1		p	0	enemy3_map	1	x	0	0	16	16
+enemy3_l2		p	0	enemy3_map	2	x	0	0	16	16
+
+enemy3_u0		p	0	enemy3_map	0	l	0	0	16	16
+enemy3_u1		p	0	enemy3_map	1	l	0	0	16	16
+enemy3_u2		p	0	enemy3_map	2	l	0	0	16	16
+
+enemy3_d0		p	0	enemy3_map	0	r	0	0	16	16
+enemy3_d1		p	0	enemy3_map	1	r	0	0	16	16
+enemy3_d2		p	0	enemy3_map	2	r	0	0	16	16
+
+enemy3_l	enemy3_l0;enemy3_l1;enemy3_l2		0.5
+enemy3_r	enemy3_r0;enemy3_r1;enemy3_r2		0.5
+enemy3_u	enemy3_u0;enemy3_u1;enemy3_u2		0.5
+enemy3_d	enemy3_d0;enemy3_d1;enemy3_d2		0.5
+
+goodie_0	p	0	goodie_map	0	-	0	0	16	16
+goodie_1	p	0	goodie_map	1	-	0	0	16	16
+goodie_2	p	0	goodie_map	2	-	0	0	16	16
+goodie_3	p	0	goodie_map	3	-	0	0	16	16
+goodie_4	p	0	goodie_map	4	-	0	0	16	16
+goodie_5	p	0	goodie_map	5	-	0	0	16	16
+goodie_6	p	0	goodie_map	6	-	0	0	16	16
+goodie_7	p	0	goodie_map	7	-	0	0	16	16
+goodie_8	p	0	goodie_map	8	-	0	0	16	16
+goodie_9	p	0	goodie_map	9	-	0	0	16	16
+
+goodie		goodie_0;goodie_1;goodie_2;goodie_3;goodie_4;goodie_5;goodie_6;goodie_7;goodie_8;goodie_9	0.5
+
+
+explo1		p	2	explo_map				0	-
+explo2		p	2	explo_map				1	-
+explo3		p	2	explo_map				2	-
+explo4		p	2	explo_map				3	-
+explo5		p	2	explo_map				4	-
+explo6		p	2	explo_map				5	-
+
+explo		explo1;explo2;explo3;explo4;explo5;explo6	0.5
+
+

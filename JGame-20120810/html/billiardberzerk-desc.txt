@@ -1,0 +1,6 @@
+A cross between billiards and Berzerk.  Destroy the robots using your billiard
+ball, but do not let them touch your ball.  Kill robots using red balls or by
+pushing them into walls.  Barrels will ignite when hit by fire or red balls.
+Control using mouse or keyboard.   Use cursors to control; press shift to aim
+a shot.  Or: drag mouse to aim a shot; hold mouse button without dragging to
+control ball directly.

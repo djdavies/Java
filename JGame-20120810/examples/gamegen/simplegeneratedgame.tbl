@@ -1,0 +1,57 @@
+blocks16_map	blocks16x16.gif	0	0	16	16	0	0
+blocks8_map		blocks8x8.gif	0	0	8	8	0	0
+
+black16		k	0	blocks16_map	0	-	0	0	16	16
+white16		w	0	blocks16_map	1	-	0	0	16	16
+red16		r	0	blocks16_map	2	-	0	0	16	16
+magenta16	m	0	blocks16_map	3	-	0	0	16	16
+blue16		b	0	blocks16_map	4	-	0	0	16	16
+cyan16		c	0	blocks16_map	13	-	0	0	16	16
+green16		g	0	blocks16_map	14	-	0	0	16	16
+yellow16	y	0	blocks16_map	15	-	0	0	16	16
+orange16	or	0	blocks16_map	8	-	0	0	16	16
+grey16		gr	0	blocks16_map	9	-	0	0	16	16
+ltred16		lr	0	blocks16_map	10	-	0	0	16	16
+ltmagenta16	lm	0	blocks16_map	11	-	0	0	16	16
+ltblue16	lb	0	blocks16_map	12	-	0	0	16	16
+dkcyan16	dc	0	blocks16_map	5	-	0	0	16	16
+dkgreen16	dg	0	blocks16_map	6	-	0	0	16	16
+brown16		br	0	blocks16_map	7	-	0	0	16	16
+ 
+black16bul		k	0	blocks8_map	0	-	0	0	8	8
+white16bul		w	0	blocks8_map	1	-	0	0	8	8
+red16bul		r	0	blocks8_map	2	-	0	0	8	8
+magenta16bul	m	0	blocks8_map	3	-	0	0	8	8
+blue16bul		b	0	blocks8_map	4	-	0	0	8	8
+cyan16bul		c	0	blocks8_map	13	-	0	0	8	8
+green16bul		g	0	blocks8_map	14	-	0	0	8	8
+yellow16bul		y	0	blocks8_map	15	-	0	0	8	8
+orange16bul		or	0	blocks8_map	8	-	0	0	8	8
+grey16bul		gr	0	blocks8_map	9	-	0	0	8	8
+ltred16bul		lr	0	blocks8_map	10	-	0	0	8	8
+ltmagenta16bul	lm	0	blocks8_map	11	-	0	0	8	8
+ltblue16bul		lb	0	blocks8_map	12	-	0	0	8	8
+dkcyan16bul		dc	0	blocks8_map	5	-	0	0	8	8
+dkgreen16bul	dg	0	blocks8_map	6	-	0	0	8	8
+brown16bul		br	0	blocks8_map	7	-	0	0	8	8
+ 
+black	k	0	blocks16_map	0	-	0	0	16	16
+white	w	0	blocks16_map	1	-	0	0	16	16
+red		r	0	blocks16_map	2	-	0	0	16	16
+magenta	m	0	blocks16_map	3	-	0	0	16	16
+blue	b	0	blocks16_map	4	-	0	0	16	16
+cyan	c	0	blocks16_map	13	-	0	0	16	16
+green	g	0	blocks16_map	14	-	0	0	16	16
+yellow	y	0	blocks16_map	15	-	0	0	16	16
+orange	or	0	blocks16_map	8	-	0	0	16	16
+grey	gr	0	blocks16_map	9	-	0	0	16	16
+ltred	lr	0	blocks16_map	10	-	0	0	16	16
+ltmagenta	lm	0	blocks16_map	11	-	0	0	16	16
+ltblue	lb	0	blocks16_map	12	-	0	0	16	16
+dkcyan	dc	0	blocks16_map	5	-	0	0	16	16
+dkgreen	dg	0	blocks16_map	6	-	0	0	16	16
+brown	br	0	blocks16_map	7	-	0	0	16	16
+  
+
+
+
